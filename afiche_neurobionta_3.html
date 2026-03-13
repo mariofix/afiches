@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vacunación Neurobionta a Domicilio – Opción 3</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Raleway', Arial, sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .poster {
+      width: 600px;
+      min-height: 850px;
+      background: #fff;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Accent stripe */
+    .accent-stripe {
+      height: 8px;
+      background: linear-gradient(90deg, #e53935, #d81b60, #8e24aa, #1e88e5);
+    }
+
+    /* Top section */
+    .top-section {
+      background: #0d1b2a;
+      padding: 30px 36px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-section::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 0; right: 0;
+      height: 80px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    /* Geometric circles */
+    .circle-deco {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.06;
+    }
+    .circle-deco.c1 { width: 300px; height: 300px; background: #1e88e5; top: -100px; right: -80px; }
+    .circle-deco.c2 { width: 160px; height: 160px; background: #fff; bottom: -30px; left: 30px; }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .winter-pill {
+      background: rgba(30,136,229,0.25);
+      border: 1px solid rgba(30,136,229,0.6);
+      color: #90caf9;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+    }
+
+    .year-text {
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #e53935;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 7px 20px;
+      margin-bottom: 16px;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+      padding-right: 28px;
+    }
+
+    .hero-title {
+      color: #fff;
+      font-size: 54px;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    .hero-title .colored {
+      color: #1e88e5;
+    }
+
+    .hero-description {
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+      max-width: 420px;
+    }
+
+    /* Middle content */
+    .middle-section {
+      flex: 1;
+      padding: 56px 36px 32px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 32px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 18px 16px;
+      text-align: center;
+      border-right: 2px solid #e0e0e0;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-icon {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #333;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .content-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #e53935;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .content-title::before {
+      content: '';
+      width: 30px;
+      height: 3px;
+      background: #e53935;
+      display: block;
+    }
+
+    .main-info {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .feature-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .feature-item {
+      flex: 1;
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 18px 14px;
+      border-top: 4px solid #1e88e5;
+      text-align: center;
+    }
+
+    .feature-item .icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .feature-item .label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.4;
+    }
+
+    /* Contact bottom section */
+    .contact-bottom {
+      background: #0d1b2a;
+      padding: 28px 36px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .contact-left {
+      flex: 1;
+    }
+
+    .contact-eyebrow {
+      color: #1e88e5;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .contact-name {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .contact-phone {
+      color: #90caf9;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+
+    .wp-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+    }
+
+    .contact-right {
+      text-align: center;
+    }
+
+    .qr-wrapper {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    .qr-caption {
+      color: rgba(255,255,255,0.6);
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .bottom-stripe {
+      height: 8px;
+      background: linear-gradient(90deg, #1e88e5, #8e24aa, #d81b60, #e53935);
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+
+    <!-- Top accent -->
+    <div class="accent-stripe"></div>
+
+    <!-- Top hero -->
+    <div class="top-section">
+      <div class="circle-deco c1"></div>
+      <div class="circle-deco c2"></div>
+
+      <div class="brand-row">
+        <div class="winter-pill">❄ Temporada Invierno 2025</div>
+        <div class="year-text">Pucón · Chile</div>
+      </div>
+
+      <div class="hero-badge">Vacunación Estacional</div>
+
+      <div class="hero-title">
+        NEURO<span class="colored">BIONTA</span><br>A DOMICILIO
+      </div>
+      <div class="hero-description">
+        Refuerzo vacunal para la temporada de invierno,<br>
+        administrado por enfermeras profesionales certificadas.
+      </div>
+    </div>
+
+    <!-- Middle -->
+    <div class="middle-section">
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-icon">🏠</span>
+          <div class="stat-label">Servicio<br>a Domicilio</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">👩‍⚕️</span>
+          <div class="stat-label">Enfermeras<br>Profesionales</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">📜</span>
+          <div class="stat-label">Registro Colegio<br>de Enfermeras</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">💉</span>
+          <div class="stat-label">Vacuna<br>Neurobionta</div>
+        </div>
+      </div>
+
+      <div class="content-title">¿Qué es Neurobionta?</div>
+      <p class="main-info">
+        <strong>Neurobionta</strong> es la opción ideal como refuerzo a tu vacunación estacional este invierno.
+        Fortalece tu sistema nervioso e inmunológico, entregándote una protección integral durante los meses de frío.
+        Ahora puedes recibirla directamente en tu domicilio, con total comodidad y seguridad.
+      </p>
+
+      <div class="feature-row">
+        <div class="feature-item">
+          <span class="icon">🌡️</span>
+          <div class="label">Protección Invernal Reforzada</div>
+        </div>
+        <div class="feature-item">
+          <span class="icon">🛡️</span>
+          <div class="label">Procedimiento Seguro y Certificado</div>
+        </div>
+        <div class="feature-item">
+          <span class="icon">📅</span>
+          <div class="label">Horarios Flexibles y Agenda Rápida</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contact bottom -->
+    <div class="contact-bottom">
+      <div class="contact-left">
+        <div class="contact-eyebrow">Contáctanos ahora</div>
+        <div class="contact-name">Constanza Ovalle</div>
+        <div class="contact-phone">+569 6625 6082</div>
+        <a class="wp-cta" href="https://wa.me/56966256082" target="_blank">
+          💬 WhatsApp
+        </a>
+      </div>
+      <div class="contact-right">
+        <div class="qr-wrapper">
+          <div id="qrcode3"></div>
+        </div>
+        <div class="qr-caption">Escanear → WhatsApp</div>
+      </div>
+    </div>
+
+    <!-- Bottom accent -->
+    <div class="bottom-stripe"></div>
+
+  </div>
+
+  <script>
+    new QRCode(document.getElementById("qrcode3"), {
+      text: "https://wa.me/56966256082",
+      width: 130,
+      height: 130,
+      colorDark: "#0d1b2a",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
+</body>
+</html>
