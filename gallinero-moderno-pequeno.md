@@ -52,7 +52,7 @@ Construye tu propio gallinero de estilo moderno. Su perfil angosto lo hace ideal
 | 15 | Tabla de cedro o ciprés de **14 cm** de ancho × **183 cm** de largo (equivalente a estaca de cerco) |
 | 1 | Tablero de plywood exterior de **1,22 × 2,44 m**, espesor **19 mm** (3/4") |
 | 1 | Plancha de zinc de **95 cm × 2,44 m** |
-| 16 | Tornillos para metal |
+| 16 | Tornillos autoperforantes para metal (para fijar la plancha de zinc al techo) |
 | 6 m | Malla de gallinero de **90 cm** de ancho |
 | 4,5 m | Malla de gallinero de **60 cm** de ancho |
 | 100 | Tornillos de bolsillo de **65 mm** para exterior |
@@ -167,7 +167,7 @@ Agrega los listones de 2×2 (soporte del piso) al interior del marco lateral usa
 
 [![Paso 4](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%204.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%204.jpg)
 
-> **Alternativa:** En el video se usó plywood exterior de 12 mm en lugar de tablas de cerco. Esto sirve, pero genera mucho desperdicio y más cortes. Si prefieres el plywood, necesitarás dos tableros completos.
+> **Alternativa:** En el video se usó plywood exterior de **12 mm** (1/2") en lugar de tablas de cerco. Esto sirve, pero genera mucho desperdicio y más cortes. Si prefieres el plywood, necesitarás dos tableros completos (nota: este espesor es distinto al plywood de 19 mm/3/4" usado para el piso y el nidal).
 
 Corta la primera tabla de cerco con la parte superior a 5° (medida de punto largo) según se muestra. Fija al interior de las paredes laterales, al ras con la parte superior del listón 2×2. Debe quedar un mínimo de **4 cm** de espacio sobre la tabla.
 
