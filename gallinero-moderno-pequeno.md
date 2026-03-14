@@ -3,7 +3,7 @@
 > Instrucciones adaptadas al español chileno con medidas en sistema métrico y materiales disponibles en Chile.
 > Fuente original: [Ana-White.com](https://www.ana-white.com/woodworking-projects/small-modern-chicken-coop)
 
-![Gallinero moderno](https://www.ana-white.com/sites/default/files/IMG_8919.jpeg)
+![Gallinero moderno](imagenes/IMG_8919.jpeg)
 
 **Dificultad:** Intermedio
 
@@ -13,13 +13,13 @@ Construye tu propio gallinero de estilo moderno. Su perfil angosto lo hace ideal
 
 ## Fotos del proyecto
 
-![Gallinero moderno 1](https://www.ana-white.com/sites/default/files/inline-images/IMG_8914%20Medium.jpeg)
+![Gallinero moderno 1](imagenes/IMG_8914-Medium.jpeg)
 
-![Gallinero moderno 2](https://www.ana-white.com/sites/default/files/inline-images/IMG_8920%20Medium_1.jpeg)
+![Gallinero moderno 2](imagenes/IMG_8920-Medium.jpeg)
 
-![Gallinero moderno 3](https://www.ana-white.com/sites/default/files/inline-images/IMG_8875%20Medium.jpeg)
+![Gallinero moderno 3](imagenes/IMG_8875-Medium.jpeg)
 
-![Limpieza del gallinero](https://www.ana-white.com/sites/default/files/inline-images/IMG_8929%20Medium.jpeg)
+![Limpieza del gallinero](imagenes/IMG_8929-Medium.jpeg)
 
 ---
 
@@ -36,7 +36,14 @@ Construye tu propio gallinero de estilo moderno. Su perfil angosto lo hace ideal
 
 ## Dimensiones
 
-![Dimensiones del gallinero moderno pequeño](https://www.ana-white.com/sites/default/files/images/chicken%20coop%20modern%20small%20dimensions.jpg)
+![Dimensiones del gallinero moderno pequeño](imagenes/dimensiones.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Largo total base: **239 cm** | Profundidad base: **91,4 cm**
+> - Altura total (lado izquierdo): **174,6 cm** | Altura (lado derecho): **153 cm**
+> - Largo del techo: **244 cm** | Profundidad del techo: **95 cm**
+> - **1,3 m²** de espacio interior del gallinero
+> - **2,2 m²** de espacio del corral exterior
 
 **Superficie aproximada: 244 cm × 91 cm**
 
@@ -131,7 +138,15 @@ Construye tu propio gallinero de estilo moderno. Su perfil angosto lo hace ideal
 
 ### Paso 1 — Marcos laterales
 
-[![Paso 1](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%201.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%201.jpg)
+[![Paso 1](imagenes/paso-1.jpg)](imagenes/paso-1.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Largo superior: **240 cm** | Largo inferior: **231,4 cm**
+> - Alto exterior (columna lateral): **155 cm** | Alto interior superior: **148 cm** | Alto interior inferior: **133,4 cm**
+> - Ancho del corral inferior: **61 cm**
+> - Voladizo de **3,8 cm** en ambos extremos superiores
+> - Construir dos en espejo
+> - Todos los ángulos son **5° fuera de escuadra**, medida de punto largo
 
 Coloca las dos piezas del marco lateral de modo que queden en espejo.
 
@@ -149,7 +164,11 @@ Construye el segundo marco en espejo al primero.
 
 ### Paso 2 — Malla de gallinero
 
-[![Paso 2](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%202.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%202.jpg)
+[![Paso 2](imagenes/paso-2.jpg)](imagenes/paso-2.jpg)
+
+> 📐 **Texto en la imagen (traducido al español):**
+> - Grapar la malla al interior del marco, en el mismo lado que los agujeros de bolsillo (no mostrados)
+> - Agregar malla a ambos paneles laterales, asegurándose de que queden en espejo con la malla hacia adentro
 
 Fija la malla de gallinero o malla metálica al interior del marco con grapas. Recorta si es necesario y dobla los bordes hacia adentro.
 
@@ -157,7 +176,13 @@ Fija la malla de gallinero o malla metálica al interior del marco con grapas. R
 
 ### Paso 3 — Soporte del piso
 
-[![Paso 3](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%203.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%203.jpg)
+[![Paso 3](imagenes/paso-3.jpg)](imagenes/paso-3.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Largo del listón 2×2: **140 cm**
+> - Tornillos de **7 cm** para fijar, cada **25 cm**
+> - Colocar el listón **6,4 cm** hacia adentro desde el exterior
+> - Al ras de la parte inferior del marco 2×4
 
 Agrega los listones de 2×2 (soporte del piso) al interior del marco lateral usando tornillos más largos.
 
@@ -165,7 +190,12 @@ Agrega los listones de 2×2 (soporte del piso) al interior del marco lateral usa
 
 ### Paso 4 — Primera tabla de cerco lateral
 
-[![Paso 4](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%204.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%204.jpg)
+[![Paso 4](imagenes/paso-4.jpg)](imagenes/paso-4.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Alto de la primera tabla de cerco: **96,8 cm**
+> - Tornillos de **3,2 cm** para fijar por el interior
+> - La tabla se apoya encima del listón 2×2 del paso anterior
 
 > **Alternativa:** En el video se usó plywood exterior de **12 mm** (1/2") en lugar de tablas de cerco. Esto sirve, pero genera mucho desperdicio y más cortes. Si prefieres el plywood, necesitarás dos tableros completos (nota: este espesor es distinto al plywood de 19 mm/3/4" usado para el piso y el nidal).
 
@@ -175,7 +205,10 @@ Corta la primera tabla de cerco con la parte superior a 5° (medida de punto lar
 
 ### Paso 5 — Tablas de cerco siguientes
 
-[![Paso 5](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%205.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%205.jpg)
+[![Paso 5](imagenes/paso-5.jpg)](imagenes/paso-5.jpg)
+
+> 📐 **Texto en la imagen (traducido al español):**
+> - Medir el punto corto de la tabla anterior y cortar la siguiente; fijar con tornillos
 
 Mide la longitud del punto corto de la primera tabla y usa esa medida para cortar la siguiente. Es posible que necesites comenzar con una tabla nueva, pero eventualmente podrás usar los retazos sobrantes a medida que los cortes se acorten.
 
@@ -185,7 +218,13 @@ Fija con tornillos autoperforantes cortos, dos tornillos por unión.
 
 ### Paso 6 — Travesaños centrales
 
-[![Paso 6](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%206.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%206.jpg)
+[![Paso 6](imagenes/paso-6.jpg)](imagenes/paso-6.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Travesaño de **84 cm**, centrado
+> - Perforar agujeros de bolsillo de **3,8 cm** en ambos extremos, dos por extremo
+> - Fijar con tornillos de bolsillo de **6,4 cm** al primer panel lateral como se muestra
+> - El listón 2×2 queda contra el extremo del listón 2×2 del marco
 
 Perfora dos agujeros de bolsillo de **38 mm** en cada extremo de las piezas 2×4 de **84 cm**. Fija según muestra el diagrama.
 
@@ -195,7 +234,10 @@ Perfora dos agujeros de bolsillo de **38 mm** en cada extremo de las piezas 2×4
 
 ### Paso 7 — Unión del segundo panel lateral
 
-[![Paso 7](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%207.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%207.jpg)
+[![Paso 7](imagenes/paso-7.jpg)](imagenes/paso-7.jpg)
+
+> 📐 **Texto en la imagen (traducido al español):**
+> - Voltear la estructura y repetir — fijar el segundo panel lateral con tornillos de bolsillo
 
 Voltea la estructura sobre el segundo panel lateral y fija con tornillos de bolsillo.
 
@@ -203,7 +245,10 @@ Voltea la estructura sobre el segundo panel lateral y fija con tornillos de bols
 
 ### Paso 8 — Listones interiores 2×2
 
-[![Paso 8](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%208.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%208.jpg)
+[![Paso 8](imagenes/paso-8.jpg)](imagenes/paso-8.jpg)
+
+> 📐 **Texto en la imagen (traducido al español):**
+> - Fijar los listones 2×2 al interior con tornillos de **6,4 cm**
 
 Agrega los listones 2×2 al interior para terminar las paredes interiores.
 
@@ -211,7 +256,7 @@ Agrega los listones 2×2 al interior para terminar las paredes interiores.
 
 ### Paso 9 — Tablas de cerco interiores
 
-[![Paso 9](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%209.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%209.jpg)
+[![Paso 9](imagenes/paso-9.jpg)](imagenes/paso-9.jpg)
 
 Agrega las tablas de cerco al interior con los tornillos autoperforantes cortos. Guarda los retazos para las puertas.
 
@@ -221,7 +266,7 @@ Esta abertura funciona como ventilación y como puerta. Como da a un corral cerr
 
 ### Paso 10 — Piso
 
-[![Paso 10](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2010.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2010.jpg)
+[![Paso 10](imagenes/paso-10.jpg)](imagenes/paso-10.jpg)
 
 Corta el piso y colócalo en su lugar. El piso se corta aproximadamente **12 mm** más pequeño para facilitar su extracción. No se atornilla, para que pueda retirarse cuando sea necesario.
 
@@ -231,7 +276,13 @@ Corta el piso y colócalo en su lugar. El piso se corta aproximadamente **12 mm*
 
 ### Paso 11 — Puerta frontal (corral)
 
-[![Paso 11](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2011.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2011.jpg)
+[![Paso 11](imagenes/paso-11.jpg)](imagenes/paso-11.jpg)
+
+> 📐 **Texto en la imagen (traducido al español):**
+> - Construir el marco de la puerta con 2×4, unir con tornillos de bolsillo
+> - Luego fijar la malla por la parte trasera
+> - Instalar con bisagras por el exterior del gallinero
+> - Colocar un pasador para mantener la puerta cerrada
 
 Construye el marco de la puerta con agujeros de bolsillo de **38 mm** y tornillos de bolsillo de **65 mm**. Fija la malla de gallinero por la parte trasera. Instala al gallinero con bisagras y usa un pasador para cerrar.
 
@@ -239,7 +290,10 @@ Construye el marco de la puerta con agujeros de bolsillo de **38 mm** y tornillo
 
 ### Paso 12 — Puerta trasera
 
-[![Paso 12](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2012.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2012.jpg)
+[![Paso 12](imagenes/paso-12.jpg)](imagenes/paso-12.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Ancho de la puerta trasera: **143,2 cm**
 
 Construye la puerta trasera, cubre la parte superior con tablas de cerco y la parte inferior con malla de gallinero. Instala con bisagras y un pasador.
 
@@ -249,7 +303,11 @@ Construye la puerta trasera, cubre la parte superior con tablas de cerco y la pa
 
 ### Paso 13 — Techo de zinc
 
-[![Paso 13](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2013.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2013.jpg)
+[![Paso 13](imagenes/paso-13.jpg)](imagenes/paso-13.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Profundidad de la plancha de zinc: **95 cm** | Largo: **244 cm**
+> - Marcar en los laterales la ubicación de los travesaños del techo antes de colocar la plancha de zinc, para identificar fácilmente dónde atornillar
 
 Este gallinero está diseñado para usar una plancha de zinc estándar de 2,44 m de largo. Simplemente deslízala sobre el techo y atorníllala a las piezas 2×4 de la cubierta con tornillos para metal.
 
@@ -257,7 +315,15 @@ Este gallinero está diseñado para usar una plancha de zinc estándar de 2,44 m
 
 ### Paso 14 — Nidal (ponedero)
 
-[![Paso 14](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2014.jpg)](https://www.ana-white.com/sites/default/files/2023-05/modern%20chicken%20coop%20plans%20small%20step%2014.jpg)
+[![Paso 14](imagenes/paso-14.jpg)](imagenes/paso-14.jpg)
+
+> 📐 **Texto en la imagen (traducido al español, medidas en centímetros):**
+> - Cortes para el nidal:
+>   - 1 — plywood 19 mm @ **80 cm × 33 cm** (fondo)
+>   - 3 — plywood 19 mm @ **33 cm × 15 cm** (separadores)
+>   - 1 — listón 1×2 o 1×3 @ **80 cm**
+> - Largo interior del nidal: **80 cm**
+> - Topes 2×4 de **38 cm** de largo; fijar con tornillos desde el exterior
 
 El nidal se puede construir con retazos de plywood de **19 mm**. Se puede ensamblar con tornillos de bolsillo o con tornillos de **65 mm**.
 
