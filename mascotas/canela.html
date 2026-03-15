@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In Memoriam – Canela</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .obituary {
+      width: 816px;
+      min-height: 1056px;
+      background: #1c1c1e;
+      color: #e8e0d4;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+    }
+
+    .obituary::before {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(200,185,160,0.25);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .photo-section {
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(30%) brightness(0.75);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(28,28,30,0.1) 40%, rgba(28,28,30,1) 100%);
+    }
+
+    .content {
+      padding: 0 60px 50px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .name-block {
+      text-align: center;
+      padding: 32px 0 20px;
+    }
+
+    .label {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #a89880;
+      margin-bottom: 12px;
+    }
+
+    .name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 58px;
+      font-weight: 700;
+      color: #f0e8dc;
+      letter-spacing: 2px;
+      line-height: 1.1;
+    }
+
+    .breed {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #a89880;
+      margin-top: 8px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(200,185,160,0.3);
+    }
+
+    .divider-ornament {
+      color: #a89880;
+      font-size: 18px;
+      letter-spacing: 6px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      flex: 1;
+    }
+
+    .column p {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: #d4c8b8;
+      text-align: justify;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 28px 60px 40px;
+      border-top: 1px solid rgba(200,185,160,0.2);
+    }
+
+    .footer-text {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #7a6e62;
+    }
+
+    .cross {
+      font-size: 22px;
+      color: #a89880;
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="obituary">
+
+    <div class="photo-section">
+      <img src="https://picsum.photos/id/237/816/340" alt="Foto de Canela" />
+      <div class="photo-overlay"></div>
+    </div>
+
+    <div class="content">
+
+      <div class="name-block">
+        <div class="label">In Memoriam</div>
+        <div class="name">Canela</div>
+        <div class="breed">Mix Boxer</div>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">✦ ✦ ✦</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <p>
+            Canela era un tornado de amor, mezclando la fuerza del boxer
+            con una ternura infinita. Su mirada expresiva comunicaba más
+            que mil palabras. Protectora y juguetona, encontró siempre el
+            equilibrio perfecto entre guardiana del hogar y compañera
+            incondicional del alma.
+          </p>
+        </div>
+        <div class="column">
+          <p>
+            Cada día con Canela fue un regalo inesperado. Nos enseñó que
+            el amor no tiene raza ni medida. Su partida nos duele
+            profundamente, pero nos consuela saber que vivió rodeada de
+            cariño. Descansa, dulce Canela. Te extrañaremos por siempre.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <span class="cross">✞</span>
+      <div class="footer-text">Siempre en nuestro corazón &bull; Descansa en paz</div>
+    </div>
+
+  </div>
+</body>
+</html>
