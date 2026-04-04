@@ -39,12 +39,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
 
   <style>
-    /* Brand palette */
+    /* Brand palette + font override */
     :root {
       --tbl-brand:      #1d4ed8;
       --tbl-brand-dark: #1e3a8a;
       --tbl-brand-lt:   #eff6ff;
+      /* Override Tabler's default Inter font */
+      --tbl-font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
+    body { font-family: var(--tbl-font-sans); }
+
+    /* Remove Tabler's default bottom border on the navbar */
+    .navbar { border-bottom: none !important; }
+
+    /* Remove borders from header action buttons */
+    .navbar .btn { border: none !important; }
 
     /* ── Hero banner ─────────────────────────────────────────── */
     .hero-banner {
