@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limelight – Discover Flask Extensions, Frameworks & Projects</title>
+  <meta name="description" content="Limelight is the community-driven directory of open source Flask extensions, frameworks, modules, and projects. Find the best Flask packages for your next project." />
+  <meta name="keywords" content="Flask, Flask extensions, Flask packages, Python web framework, open source, Flask frameworks, Flask modules" />
+  <meta name="author" content="Limelight Community" />
+  <link rel="canonical" href="https://flaskpackages.pythonanywhere.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Limelight – Discover Flask Extensions, Frameworks & Projects" />
+  <meta property="og:description" content="Community-driven directory of open source Flask extensions, frameworks, modules, and projects." />
+  <meta property="og:url" content="https://flaskpackages.pythonanywhere.com/" />
+  <meta property="og:site_name" content="Limelight" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Limelight – Discover Flask Extensions, Frameworks & Projects" />
+  <meta name="twitter:description" content="Community-driven directory of open source Flask extensions & packages." />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Limelight",
+    "url": "https://flaskpackages.pythonanywhere.com/",
+    "description": "Discover and explore open source Flask extensions, frameworks, modules, and projects.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://flaskpackages.pythonanywhere.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --flask-green: #2d8a4e;
+      --flask-green-dark: #1e6035;
+      --flask-green-light: #e8f5ed;
+    }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: #212529; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--flask-green-dark) 0%, var(--flask-green) 100%);
+      padding: 4rem 0 3rem;
+    }
+    .hero .badge-pill {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border-radius: 50px;
+      font-size: .8rem;
+      padding: .35em .9em;
+    }
+    .search-box .form-control {
+      border: none;
+      border-radius: 0.5rem 0 0 0.5rem;
+      padding: .75rem 1.25rem;
+      font-size: 1.05rem;
+      box-shadow: none;
+    }
+    .search-box .btn {
+      border-radius: 0 0.5rem 0.5rem 0;
+      padding: .75rem 1.5rem;
+      background: #fff;
+      color: var(--flask-green-dark);
+      font-weight: 600;
+      border: none;
+    }
+    .search-box .btn:hover { background: var(--flask-green-light); }
+
+    /* Stats bar */
+    .stats-bar { background: #fff; border-bottom: 1px solid #e9ecef; }
+    .stat-item { text-align: center; padding: .75rem 0; }
+    .stat-item .num { font-size: 1.4rem; font-weight: 700; color: var(--flask-green); line-height: 1; }
+    .stat-item .lbl { font-size: .75rem; color: #6c757d; text-transform: uppercase; letter-spacing: .05em; }
+
+    /* Category cards */
+    .cat-card {
+      border: 1px solid #e9ecef;
+      border-radius: .75rem;
+      padding: 1.25rem 1rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow .15s, border-color .15s;
+    }
+    .cat-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); border-color: var(--flask-green); color: inherit; }
+    .cat-card .icon { font-size: 1.6rem; color: var(--flask-green); margin-bottom: .5rem; }
+    .cat-card .title { font-weight: 600; font-size: .95rem; margin-bottom: .15rem; }
+    .cat-card .count { font-size: .8rem; color: #6c757d; }
+
+    /* Package list */
+    .pkg-row { border-bottom: 1px solid #f0f0f0; padding: .85rem 0; }
+    .pkg-row:last-child { border-bottom: none; }
+    .pkg-name { font-weight: 600; color: var(--flask-green-dark); text-decoration: none; }
+    .pkg-name:hover { text-decoration: underline; }
+    .pkg-desc { font-size: .88rem; color: #495057; margin: .1rem 0 0; }
+    .pkg-meta span { font-size: .78rem; color: #6c757d; margin-right: .75rem; }
+
+    /* Footer */
+    footer { background: #212529; color: #adb5bd; }
+    footer a { color: #adb5bd; text-decoration: none; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark navbar-expand-md" style="background:var(--flask-green-dark);">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-5" href="/">
+      <i class="bi bi-spotlight me-1"></i> Limelight
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="/packages/">Packages</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories/">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="/grids/">Grids</a></li>
+        <li class="nav-item"><a class="nav-link" href="/add/">Submit Package</a></li>
+      </ul>
+      <a href="/login/" class="btn btn-outline-light btn-sm">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero / Search -->
+<header class="hero text-white text-center">
+  <div class="container">
+    <span class="badge-pill mb-3 d-inline-block">Flask Packages Directory</span>
+    <h1 class="fw-bold fs-2 mb-2">Discover the best Flask packages</h1>
+    <p class="mb-4 opacity-75 fs-5">Extensions, frameworks, modules, and projects – curated by the community.</p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <form action="/search/" method="get" role="search" aria-label="Search Flask packages">
+          <div class="input-group search-box shadow">
+            <input
+              type="search"
+              name="q"
+              class="form-control"
+              placeholder="Search extensions, packages, or keywords…"
+              aria-label="Search packages"
+              autocomplete="off"
+            />
+            <button type="submit" class="btn">
+              <i class="bi bi-search"></i> Search
+            </button>
+          </div>
+        </form>
+        <p class="mt-2 opacity-60 small">
+          Popular: <a href="/search/?q=auth" class="text-white-50">auth</a> ·
+          <a href="/search/?q=admin" class="text-white-50">admin</a> ·
+          <a href="/search/?q=orm" class="text-white-50">orm</a> ·
+          <a href="/search/?q=rest" class="text-white-50">rest api</a> ·
+          <a href="/search/?q=cache" class="text-white-50">caching</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-6 col-md-3 stat-item border-end">
+        <div class="num">1,240+</div>
+        <div class="lbl">Packages</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item border-end">
+        <div class="num">48</div>
+        <div class="lbl">Categories</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item border-end">
+        <div class="num">320+</div>
+        <div class="lbl">Contributors</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <div class="num">Weekly</div>
+        <div class="lbl">Updated</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<main class="py-5">
+  <div class="container">
+
+    <!-- Categories -->
+    <section aria-labelledby="cat-heading" class="mb-5">
+      <div class="d-flex align-items-center mb-3">
+        <h2 class="h5 fw-bold mb-0" id="cat-heading">Browse by Category</h2>
+        <a href="/categories/" class="ms-auto small text-decoration-none" style="color:var(--flask-green)">All categories <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/authentication/" class="cat-card">
+            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+            <div class="title">Authentication</div>
+            <div class="count">84 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/admin/" class="cat-card">
+            <div class="icon"><i class="bi bi-layout-sidebar"></i></div>
+            <div class="title">Admin Panels</div>
+            <div class="count">37 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/database/" class="cat-card">
+            <div class="icon"><i class="bi bi-database"></i></div>
+            <div class="title">Databases & ORM</div>
+            <div class="count">62 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/rest-api/" class="cat-card">
+            <div class="icon"><i class="bi bi-braces"></i></div>
+            <div class="title">REST / APIs</div>
+            <div class="count">91 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/forms/" class="cat-card">
+            <div class="icon"><i class="bi bi-input-cursor-text"></i></div>
+            <div class="title">Forms</div>
+            <div class="count">29 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/caching/" class="cat-card">
+            <div class="icon"><i class="bi bi-lightning"></i></div>
+            <div class="title">Caching</div>
+            <div class="count">18 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/testing/" class="cat-card">
+            <div class="icon"><i class="bi bi-bug"></i></div>
+            <div class="title">Testing</div>
+            <div class="count">41 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/deployment/" class="cat-card">
+            <div class="icon"><i class="bi bi-cloud-upload"></i></div>
+            <div class="title">Deployment</div>
+            <div class="count">23 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/email/" class="cat-card">
+            <div class="icon"><i class="bi bi-envelope"></i></div>
+            <div class="title">Email</div>
+            <div class="count">16 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/security/" class="cat-card">
+            <div class="icon"><i class="bi bi-shield-check"></i></div>
+            <div class="title">Security</div>
+            <div class="count">33 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/category/logging/" class="cat-card">
+            <div class="icon"><i class="bi bi-journal-text"></i></div>
+            <div class="title">Logging</div>
+            <div class="count">14 packages</div>
+          </a>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+          <a href="/categories/" class="cat-card" style="border-style:dashed; background:var(--flask-green-light);">
+            <div class="icon"><i class="bi bi-grid"></i></div>
+            <div class="title">All Categories</div>
+            <div class="count">48 total</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two-column: Trending + New -->
+    <div class="row g-4">
+      <!-- Trending packages -->
+      <div class="col-lg-6">
+        <section aria-labelledby="trending-heading">
+          <div class="d-flex align-items-center mb-3">
+            <h2 class="h5 fw-bold mb-0" id="trending-heading"><i class="bi bi-graph-up-arrow me-1" style="color:var(--flask-green)"></i> Trending Packages</h2>
+            <a href="/packages/?sort=trending" class="ms-auto small text-decoration-none" style="color:var(--flask-green)">See all</a>
+          </div>
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+              <article class="pkg-row px-3">
+                <a href="/package/flask-login/" class="pkg-name">Flask-Login</a>
+                <p class="pkg-desc">User session management for Flask. Handles login, logout, and remembering session.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-star-fill text-warning"></i> 3.5k</span>
+                  <span><i class="bi bi-tag"></i> Authentication</span>
+                  <span><i class="bi bi-arrow-down-circle"></i> 2.1M/mo</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-sqlalchemy/" class="pkg-name">Flask-SQLAlchemy</a>
+                <p class="pkg-desc">Adds SQLAlchemy support to your Flask application. Simplifies database operations.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-star-fill text-warning"></i> 4.1k</span>
+                  <span><i class="bi bi-tag"></i> Database</span>
+                  <span><i class="bi bi-arrow-down-circle"></i> 3.8M/mo</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-restful/" class="pkg-name">Flask-RESTful</a>
+                <p class="pkg-desc">Extension for quickly building REST APIs with Flask using class-based views.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-star-fill text-warning"></i> 6.7k</span>
+                  <span><i class="bi bi-tag"></i> REST / APIs</span>
+                  <span><i class="bi bi-arrow-down-circle"></i> 1.4M/mo</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-caching/" class="pkg-name">Flask-Caching</a>
+                <p class="pkg-desc">Adds caching support to your Flask application with multiple backend options.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-star-fill text-warning"></i> 780</span>
+                  <span><i class="bi bi-tag"></i> Caching</span>
+                  <span><i class="bi bi-arrow-down-circle"></i> 950k/mo</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-wtf/" class="pkg-name">Flask-WTF</a>
+                <p class="pkg-desc">Simple integration of Flask and WTForms, including CSRF protection.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-star-fill text-warning"></i> 1.4k</span>
+                  <span><i class="bi bi-tag"></i> Forms</span>
+                  <span><i class="bi bi-arrow-down-circle"></i> 2.6M/mo</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Newly added packages -->
+      <div class="col-lg-6">
+        <section aria-labelledby="new-heading">
+          <div class="d-flex align-items-center mb-3">
+            <h2 class="h5 fw-bold mb-0" id="new-heading"><i class="bi bi-stars me-1" style="color:var(--flask-green)"></i> Recently Added</h2>
+            <a href="/packages/?sort=newest" class="ms-auto small text-decoration-none" style="color:var(--flask-green)">See all</a>
+          </div>
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+              <article class="pkg-row px-3">
+                <a href="/package/flask-ninja/" class="pkg-name">Flask-Ninja</a>
+                <p class="pkg-desc">A powerful API framework for Flask, inspired by Django Ninja. Type-hint driven.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-calendar3"></i> 3 days ago</span>
+                  <span><i class="bi bi-tag"></i> REST / APIs</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-babel-2/" class="pkg-name">Flask-Babel 2</a>
+                <p class="pkg-desc">Updated i18n and l10n extension for Flask applications using Babel.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-calendar3"></i> 1 week ago</span>
+                  <span><i class="bi bi-tag"></i> Internationalization</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-htmx/" class="pkg-name">Flask-HTMX</a>
+                <p class="pkg-desc">Integrate HTMX with Flask for dynamic, server-side interactions without writing JS.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-calendar3"></i> 2 weeks ago</span>
+                  <span><i class="bi bi-tag"></i> Frontend</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-pydantic/" class="pkg-name">Flask-Pydantic</a>
+                <p class="pkg-desc">Request/response validation for Flask using Pydantic models.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-calendar3"></i> 3 weeks ago</span>
+                  <span><i class="bi bi-tag"></i> Validation</span>
+                </div>
+              </article>
+              <article class="pkg-row px-3">
+                <a href="/package/flask-tailwind/" class="pkg-name">Flask-Tailwind</a>
+                <p class="pkg-desc">Adds Tailwind CSS support to Flask applications with automatic builds.</p>
+                <div class="pkg-meta mt-1">
+                  <span><i class="bi bi-calendar3"></i> 1 month ago</span>
+                  <span><i class="bi bi-tag"></i> Frontend</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="mt-5 py-4 px-4 rounded-3 text-center" style="background:var(--flask-green-light);" aria-labelledby="cta-heading">
+      <h2 class="h5 fw-bold mb-1" id="cta-heading">Know a Flask package that belongs here?</h2>
+      <p class="text-muted mb-3">Limelight is community-driven. Submit a package to help other Flask developers discover great tools.</p>
+      <a href="/add/" class="btn btn-success me-2"><i class="bi bi-plus-circle me-1"></i> Submit a Package</a>
+      <a href="/about/" class="btn btn-outline-secondary">Learn more</a>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="py-4 mt-4">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <strong class="text-white"><i class="bi bi-spotlight me-1"></i> Limelight</strong>
+        <p class="mt-2 small">Community-driven directory of open source Flask extensions, frameworks, and projects.</p>
+      </div>
+      <div class="col-md-2">
+        <h3 class="text-white small fw-bold text-uppercase mb-2">Explore</h3>
+        <ul class="list-unstyled small">
+          <li><a href="/packages/">All Packages</a></li>
+          <li><a href="/categories/">Categories</a></li>
+          <li><a href="/grids/">Grids</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <h3 class="text-white small fw-bold text-uppercase mb-2">Community</h3>
+        <ul class="list-unstyled small">
+          <li><a href="/add/">Submit Package</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/api/">API</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <p class="small mb-1">Inspired by <a href="https://djangopackages.org" rel="noopener">Django Packages</a></p>
+        <p class="small">Built with ❤️ by the Flask community</p>
+      </div>
+    </div>
+    <hr class="border-secondary mt-3 mb-2" />
+    <p class="small text-center mb-0">© 2024 Limelight · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
