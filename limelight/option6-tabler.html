@@ -46,14 +46,19 @@
       --tbl-brand-lt:   #eff6ff;
       /* Override Tabler's default Inter font */
       --tbl-font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      /* No vertical sidebar in this layout */
+      --tbl-navbar-width: 0px;
     }
-    body { font-family: var(--tbl-font-sans); }
+    body { font-family: var(--tbl-font-sans); margin: 0; }
 
-    /* Remove Tabler's default bottom border on the navbar */
-    .navbar { border-bottom: none !important; }
+    /* Remove Tabler's default bottom border and shadow on the navbar */
+    .navbar { border-bottom: none !important; box-shadow: none !important; }
 
-    /* Remove borders from header action buttons */
-    .navbar .btn { border: none !important; }
+    /* Ensure page-wrapper/page-body don't inherit sidebar left-padding */
+    .page-wrapper, .page-body { padding-left: 0 !important; margin-left: 0 !important; }
+
+    /* Equalise navbar button heights */
+    .navbar .btn-sm { padding-top: .3rem; padding-bottom: .3rem; line-height: 1.5; }
 
     /* ── Hero banner ─────────────────────────────────────────── */
     .hero-banner {
