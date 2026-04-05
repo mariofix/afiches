@@ -587,6 +587,16 @@
   </div>
 </div>
 
+<!-- Toast notification -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:1100;">
+  <div id="submitToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="submitToastMsg"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="container">
     <div class="row g-3">
@@ -656,13 +666,19 @@
     }
 
     if (valid) {
-      // In production, POST to /add/ with the collected data.
-      // For now, close modal and show a toast-style alert.
+      // Capture values before resetting the form
+      var submittedSlug = slug.value.trim();
+      var submittedCategory = catSelected.value;
+
+      // Close the modal and reset form state
       var modal = bootstrap.Modal.getInstance(document.getElementById('submitModal'));
       modal.hide();
-      slug.classList.remove('is-valid');
-      form.reset();
-      alert('✅ Package "' + slug.value.trim() + '" submitted as ' + catSelected.value + '!\n\nIn production this would POST to /add/.');
+
+      // Show a Bootstrap toast instead of alert()
+      var toastEl = document.getElementById('submitToast');
+      document.getElementById('submitToastMsg').textContent =
+        '✅ "' + submittedSlug + '" submitted as ' + submittedCategory + '!';
+      bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 4000 }).show();
     }
   });
 
