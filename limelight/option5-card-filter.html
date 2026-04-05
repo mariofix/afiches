@@ -211,6 +211,35 @@
     [data-bs-theme="dark"] .submit-modal .form-control::placeholder { color: #64748b; }
     [data-bs-theme="dark"] .submit-modal .form-control:focus { background: #0f172a; border-color: var(--brand); color: #e2e8f0; box-shadow: 0 0 0 .2rem rgba(29,78,216,.35); }
     [data-bs-theme="dark"] .submit-modal .modal-footer { border-top-color: #334155; }
+
+    /* Origen toggle */
+    .origen-toggle { display: flex; gap: .5rem; }
+    .origen-toggle .btn-check + label {
+      flex: 1;
+      text-align: center;
+      font-weight: 600;
+      font-size: .85rem;
+      border-radius: .4rem;
+      padding: .45rem .75rem;
+      border: 2px solid #e2e8f0;
+      background: #fff;
+      color: #475569;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s;
+    }
+    .origen-toggle .btn-check + label:hover { border-color: var(--brand); color: var(--brand); }
+    .origen-toggle .btn-check:checked + label {
+      border-color: var(--brand);
+      background: var(--brand-light);
+      color: var(--brand-dark);
+      box-shadow: 0 0 0 3px rgba(29,78,216,.15);
+    }
+    [data-bs-theme="dark"] .origen-toggle .btn-check + label { background: #0f172a; border-color: #334155; color: #94a3b8; }
+    [data-bs-theme="dark"] .origen-toggle .btn-check + label:hover { border-color: var(--brand); color: #93c5fd; }
+    [data-bs-theme="dark"] .origen-toggle .btn-check:checked + label { background: rgba(29,78,216,.25); border-color: #60a5fa; color: #93c5fd; box-shadow: 0 0 0 3px rgba(96,165,250,.2); }
+
+    /* Error alert inside modal */
+    .submit-modal .api-error { font-size: .83rem; }
   </style>
 </head>
 <body>
@@ -505,20 +534,34 @@
       <div class="modal-body p-4">
         <form id="submitPackageForm" novalidate>
 
+          <!-- API error -->
+          <div id="apiError" class="alert alert-danger api-error py-2 px-3 mb-3" role="alert" style="display:none;"></div>
+
+          <!-- Origen -->
+          <div class="mb-3">
+            <p class="form-label slug-label mb-2">Source <span class="text-danger">*</span></p>
+            <div class="origen-toggle">
+              <input type="radio" class="btn-check" name="origen" id="origen-pypi" value="Pypi" autocomplete="off" required />
+              <label for="origen-pypi"><i class="bi bi-box-seam me-1"></i>PyPI</label>
+              <input type="radio" class="btn-check" name="origen" id="origen-git" value="git" autocomplete="off" />
+              <label for="origen-git"><i class="bi bi-git me-1"></i>Git</label>
+            </div>
+            <div id="origenError" class="text-danger mt-2" style="font-size:.8rem;display:none;"><i class="bi bi-exclamation-circle me-1"></i>Please select a source.</div>
+          </div>
+
           <!-- Slug -->
           <div class="mb-4">
-            <label for="pkgSlug" class="form-label slug-label">PyPI / GitHub slug <span class="text-danger">*</span></label>
+            <label for="pkgSlug" class="form-label slug-label">Slug <span class="text-danger">*</span></label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
               <input type="text" class="form-control" id="pkgSlug" name="slug"
-                placeholder="e.g. flask-login or myorg/myrepo"
-                pattern="[a-zA-Z0-9_\-\./]+"
+                placeholder="Select a source first…"
                 required
                 autocomplete="off"
                 aria-describedby="slugHint" />
-              <div class="invalid-feedback">Please enter a valid slug (letters, numbers, hyphens, underscores).</div>
+              <div class="invalid-feedback" id="slugFeedback">Please enter a valid slug.</div>
             </div>
-            <div id="slugHint" class="slug-hint mt-1">Use the PyPI package name or the GitHub <code>owner/repo</code> path.</div>
+            <div id="slugHint" class="slug-hint mt-1">Select a source to see the expected format.</div>
           </div>
 
           <!-- Category -->
@@ -640,21 +683,76 @@
     });
   });
 
-  // Submit modal validation
+  // Slug config per origen
+  var SLUG_CONFIG = {
+    Pypi: {
+      placeholder: 'e.g. flask-login',
+      hint: 'Enter the PyPI package name (e.g. <code>flask-login</code>).',
+      pattern: /^[A-Za-z0-9]([A-Za-z0-9._-]*[A-Za-z0-9])?$/,
+      feedback: 'Please enter a valid PyPI package name (letters, numbers, hyphens, underscores, dots).'
+    },
+    git: {
+      placeholder: 'e.g. https://github.com/owner/repo or owner/repo',
+      hint: 'Enter the full git URL (https://…) or the <code>owner/repo</code> shorthand.',
+      pattern: /^(https?:\/\/[^\s\/]+\/[^\s]+|[A-Za-z0-9_-]+\/[A-Za-z0-9._-]+)$/,
+      feedback: 'Please enter a valid git URL (https://…) or owner/repo path.'
+    }
+  };
+
+  // Update slug field when origen changes
+  document.querySelectorAll('input[name="origen"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      var cfg = SLUG_CONFIG[this.value];
+      var slugInput = document.getElementById('pkgSlug');
+      slugInput.placeholder = cfg.placeholder;
+      slugInput.removeAttribute('pattern');
+      document.getElementById('slugHint').innerHTML = cfg.hint;
+      document.getElementById('slugFeedback').textContent = cfg.feedback;
+      slugInput.classList.remove('is-invalid', 'is-valid');
+      document.getElementById('origenError').style.display = 'none';
+    });
+  });
+
+  // Submit modal – API call with double-submission guard
   document.getElementById('submitModalBtn').addEventListener('click', function () {
+    var btn = this;
     var form = document.getElementById('submitPackageForm');
-    var slug = document.getElementById('pkgSlug');
+    var slugInput = document.getElementById('pkgSlug');
     var catSelected = form.querySelector('input[name="category"]:checked');
+    var origenSelected = form.querySelector('input[name="origen"]:checked');
     var catError = document.getElementById('catError');
+    var origenError = document.getElementById('origenError');
+    var apiError = document.getElementById('apiError');
     var valid = true;
 
-    // Slug validation
-    if (!slug.value.trim() || !slug.checkValidity()) {
-      slug.classList.add('is-invalid');
+    // Hide previous API error
+    apiError.style.display = 'none';
+
+    // Origen validation
+    if (!origenSelected) {
+      origenError.style.display = 'block';
       valid = false;
     } else {
-      slug.classList.remove('is-invalid');
-      slug.classList.add('is-valid');
+      origenError.style.display = 'none';
+    }
+
+    // Slug validation (pattern depends on origen)
+    var slugVal = slugInput.value.trim();
+    if (origenSelected && SLUG_CONFIG[origenSelected.value]) {
+      var pattern = SLUG_CONFIG[origenSelected.value].pattern;
+      document.getElementById('slugFeedback').textContent = SLUG_CONFIG[origenSelected.value].feedback;
+      if (!slugVal || !pattern.test(slugVal)) {
+        slugInput.classList.add('is-invalid');
+        slugInput.classList.remove('is-valid');
+        valid = false;
+      } else {
+        slugInput.classList.remove('is-invalid');
+        slugInput.classList.add('is-valid');
+      }
+    } else if (!slugVal) {
+      slugInput.classList.add('is-invalid');
+      slugInput.classList.remove('is-valid');
+      valid = false;
     }
 
     // Category validation
@@ -665,21 +763,45 @@
       catError.style.display = 'none';
     }
 
-    if (valid) {
-      // Capture values before resetting the form
-      var submittedSlug = slug.value.trim();
-      var submittedCategory = catSelected.value;
+    if (!valid) return;
 
-      // Close the modal and reset form state
-      var modal = bootstrap.Modal.getInstance(document.getElementById('submitModal'));
-      modal.hide();
+    // Prevent double submission
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>Submitting…';
 
-      // Show a Bootstrap toast instead of alert()
-      var toastEl = document.getElementById('submitToast');
-      document.getElementById('submitToastMsg').textContent =
-        '✅ "' + submittedSlug + '" submitted as ' + submittedCategory + '!';
-      bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 4000 }).show();
-    }
+    fetch('/api/new.project', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        origen: origenSelected.value,
+        type: catSelected.value,
+        slug: slugVal
+      })
+    })
+    .then(function (response) {
+      return response.json().then(function (data) {
+        return { status: response.status, data: data };
+      });
+    })
+    .then(function (result) {
+      if (result.status === 200 || result.status === 201) {
+        // Redirect to the project page
+        var projectSlug = result.data.slug || slugVal;
+        window.location.href = '/stars/project/' + projectSlug + '/';
+      } else {
+        var msg = (result.data && result.data.detail) ? result.data.detail : 'An error occurred. Please try again.';
+        apiError.textContent = msg;
+        apiError.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-send me-1"></i>Submit Package';
+      }
+    })
+    .catch(function () {
+      apiError.textContent = 'Could not reach the server. Please check your connection and try again.';
+      apiError.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-send me-1"></i>Submit Package';
+    });
   });
 
   // Reset validation state when modal is closed
@@ -687,7 +809,14 @@
     var form = document.getElementById('submitPackageForm');
     form.reset();
     document.getElementById('pkgSlug').classList.remove('is-invalid', 'is-valid');
+    document.getElementById('pkgSlug').placeholder = 'Select a source first…';
+    document.getElementById('slugHint').textContent = 'Select a source to see the expected format.';
     document.getElementById('catError').style.display = 'none';
+    document.getElementById('origenError').style.display = 'none';
+    document.getElementById('apiError').style.display = 'none';
+    var btn = document.getElementById('submitModalBtn');
+    btn.disabled = false;
+    btn.innerHTML = '<i class="bi bi-send me-1"></i>Submit Package';
   });
 
 
