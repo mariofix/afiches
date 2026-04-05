@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flask-SQLAlchemy – Limelight Flask Package Directory</title>
+  <meta name="description" content="Flask-SQLAlchemy adds SQLAlchemy ORM support to Flask. The most widely used database integration for Flask applications. 4,100+ GitHub stars, actively maintained." />
+  <meta name="keywords" content="Flask-SQLAlchemy, Flask database, SQLAlchemy ORM, Flask ORM extension, Flask database integration" />
+  <meta name="author" content="Limelight Community" />
+  <link rel="canonical" href="https://flaskpackages.pythonanywhere.com/package/flask-sqlalchemy/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Flask-SQLAlchemy – Limelight Flask Package Directory" />
+  <meta property="og:description" content="Adds SQLAlchemy ORM support to Flask. 4,100+ stars, actively maintained." />
+  <meta property="og:url" content="https://flaskpackages.pythonanywhere.com/package/flask-sqlalchemy/" />
+  <meta property="og:image" content="https://flaskpackages.pythonanywhere.com/static/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Flask-SQLAlchemy – Limelight Flask Package Directory" />
+  <meta name="twitter:description" content="Adds SQLAlchemy ORM support to Flask. 4,100+ stars, actively maintained." />
+  <meta name="twitter:image" content="https://flaskpackages.pythonanywhere.com/static/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "Flask-SQLAlchemy",
+    "description": "Adds SQLAlchemy ORM support to Flask. The most widely used database integration for Flask applications.",
+    "url": "https://flaskpackages.pythonanywhere.com/package/flask-sqlalchemy/",
+    "codeRepository": "https://github.com/pallets-eco/flask-sqlalchemy",
+    "programmingLanguage": "Python",
+    "license": "https://opensource.org/licenses/BSD-3-Clause",
+    "keywords": ["Flask", "SQLAlchemy", "ORM", "database"]
+  }
+  </script>
+
+  <!-- Apply saved or system theme before first paint to avoid flash -->
+  <script>(function(){var t=localStorage.getItem('ll-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-bs-theme',t);})();</script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --brand: #1d4ed8;
+      --brand-dark: #1e3a8a;
+      --brand-light: #eff6ff;
+    }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; }
+
+    /* Navbar */
+    .navbar { background: var(--brand-dark); }
+    .navbar-brand { font-weight: 800; font-size: 1.2rem; color: #fff !important; }
+    .nav-link { color: rgba(255,255,255,.8) !important; }
+    .nav-link:hover { color: #fff !important; }
+
+    /* Package hero */
+    .pkg-hero {
+      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+      padding: 2rem 0 1.75rem;
+      color: #fff;
+    }
+    .pkg-hero .breadcrumb-item a { color: rgba(255,255,255,.7); text-decoration: none; }
+    .pkg-hero .breadcrumb-item a:hover { color: #fff; }
+    .pkg-hero .breadcrumb-item.active { color: rgba(255,255,255,.6); }
+    .pkg-hero .breadcrumb-divider { color: rgba(255,255,255,.4); }
+    .pkg-hero h1 { font-weight: 800; font-size: 1.9rem; line-height: 1.2; }
+    .pkg-hero .pkg-subtitle { opacity: .85; font-size: 1rem; max-width: 680px; }
+    .pkg-hero-links a { color: rgba(255,255,255,.85); font-size: .85rem; text-decoration: none; }
+    .pkg-hero-links a:hover { color: #fff; text-decoration: underline; }
+
+    /* Stat chips */
+    .stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      background: rgba(255,255,255,.12);
+      border-radius: .35rem;
+      padding: .3em .75em;
+      font-size: .8rem;
+      white-space: nowrap;
+    }
+
+    /* Health badges */
+    .health-badge { font-size: .68rem; padding: .2em .6em; border-radius: 3px; font-weight: 600; }
+    .hb-active { background: #dcfce7; color: #166534; }
+    .hb-stale { background: #fef9c3; color: #854d0e; }
+    .hb-inactive { background: #fee2e2; color: #991b1b; }
+
+    /* KPI metric cards */
+    .metric-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: .5rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric-card .metric-val { font-size: 1.5rem; font-weight: 800; color: var(--brand-dark); line-height: 1; }
+    .metric-card .metric-label { font-size: .72rem; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-top: .2rem; }
+    .metric-card .metric-icon { font-size: 1.25rem; color: var(--brand); margin-bottom: .35rem; }
+
+    /* Content panels */
+    .content-panel {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: .5rem;
+      overflow: hidden;
+    }
+    .content-panel .panel-head {
+      padding: .65rem 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .content-panel .panel-body { padding: 1rem; }
+
+    /* README area */
+    .readme-body { font-size: .875rem; line-height: 1.7; color: #374151; }
+    .readme-body h2 { font-size: 1.1rem; font-weight: 700; margin-top: 1.25rem; border-bottom: 1px solid #e2e8f0; padding-bottom: .3rem; }
+    .readme-body h3 { font-size: .95rem; font-weight: 700; margin-top: 1rem; }
+    .readme-body pre { background: #f1f5f9; border-radius: .375rem; padding: .75rem 1rem; font-size: .8rem; overflow-x: auto; }
+    .readme-body code { background: #f1f5f9; padding: .1em .35em; border-radius: 3px; font-size: .82em; }
+    .readme-body pre code { background: none; padding: 0; }
+    .readme-body a { color: var(--brand); }
+
+    /* Version history table */
+    .version-table td, .version-table th { font-size: .82rem; vertical-align: middle; }
+    .version-tag { background: var(--brand-light); color: var(--brand); padding: .1em .5em; border-radius: 3px; font-weight: 700; font-size: .78rem; font-family: monospace; }
+
+    /* Sidebar metadata */
+    .meta-list dt { font-size: .72rem; color: #64748b; text-transform: uppercase; letter-spacing: .07em; margin-top: .75rem; }
+    .meta-list dd { font-size: .85rem; color: #1e293b; margin-bottom: 0; }
+
+    /* Category / tag pills */
+    .tag-pill { background: var(--brand-light); color: var(--brand); padding: .2em .65em; border-radius: .25rem; font-size: .78rem; font-weight: 600; text-decoration: none; display: inline-block; margin: .2rem .15rem .2rem 0; }
+    .tag-pill:hover { background: var(--brand); color: #fff; }
+
+    /* Maintainer avatar row */
+    .maintainer-avatar {
+      width: 2rem; height: 2rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e2e8f0;
+    }
+
+    /* Related package list */
+    .rel-pkg-row { display: flex; justify-content: space-between; align-items: center; padding: .5rem 0; border-bottom: 1px solid #f1f5f9; }
+    .rel-pkg-row:last-child { border-bottom: none; }
+    .rel-pkg-name { font-size: .85rem; font-weight: 600; color: var(--brand-dark); text-decoration: none; }
+    .rel-pkg-name:hover { text-decoration: underline; }
+    .rel-pkg-desc { font-size: .75rem; color: #64748b; }
+    .rel-pkg-stars { font-size: .75rem; color: #94a3b8; white-space: nowrap; }
+
+    /* Pagination (reused) */
+    .page-link { color: var(--brand); }
+    .page-item.active .page-link { background: var(--brand); border-color: var(--brand); }
+
+    footer { background: var(--brand-dark); color: rgba(255,255,255,.7); padding: 2rem 0; }
+    footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── Dark theme overrides ───────────────────────────────── */
+    [data-bs-theme="dark"] {
+      --brand-light: rgba(29, 78, 216, 0.2);
+    }
+    [data-bs-theme="dark"] body { background: #0f172a; color: #e2e8f0; }
+    [data-bs-theme="dark"] .metric-card { background: #1e293b; border-color: #334155; }
+    [data-bs-theme="dark"] .metric-card .metric-val { color: #93c5fd; }
+    [data-bs-theme="dark"] .metric-card .metric-label { color: #94a3b8; }
+    [data-bs-theme="dark"] .content-panel { background: #1e293b; border-color: #334155; }
+    [data-bs-theme="dark"] .content-panel .panel-head { border-bottom-color: #334155; color: #94a3b8; }
+    [data-bs-theme="dark"] .readme-body { color: #cbd5e1; }
+    [data-bs-theme="dark"] .readme-body h2 { border-bottom-color: #334155; }
+    [data-bs-theme="dark"] .readme-body pre,
+    [data-bs-theme="dark"] .readme-body code { background: #0f172a; }
+    [data-bs-theme="dark"] .readme-body a { color: #93c5fd; }
+    [data-bs-theme="dark"] .version-tag { background: rgba(29,78,216,.25); color: #93c5fd; }
+    [data-bs-theme="dark"] .meta-list dt { color: #94a3b8; }
+    [data-bs-theme="dark"] .meta-list dd { color: #cbd5e1; }
+    [data-bs-theme="dark"] .tag-pill { background: rgba(29,78,216,.25); color: #93c5fd; }
+    [data-bs-theme="dark"] .tag-pill:hover { background: var(--brand); color: #fff; }
+    [data-bs-theme="dark"] .rel-pkg-row { border-bottom-color: #334155; }
+    [data-bs-theme="dark"] .rel-pkg-name { color: #93c5fd; }
+    [data-bs-theme="dark"] .rel-pkg-desc { color: #94a3b8; }
+    [data-bs-theme="dark"] .rel-pkg-stars { color: #64748b; }
+    [data-bs-theme="dark"] .hb-active   { background: #14532d; color: #86efac; }
+    [data-bs-theme="dark"] .hb-stale    { background: #78350f; color: #fde68a; }
+    [data-bs-theme="dark"] .hb-inactive { background: #7f1d1d; color: #fca5a5; }
+    [data-bs-theme="dark"] .text-muted { color: #94a3b8 !important; }
+    [data-bs-theme="dark"] .maintainer-avatar { border-color: #334155; }
+    [data-bs-theme="dark"] .version-table td,
+    [data-bs-theme="dark"] .version-table th { color: #cbd5e1; border-color: #334155; }
+    [data-bs-theme="dark"] .table { --bs-table-color: #cbd5e1; --bs-table-border-color: #334155; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand" href="/"><i class="bi bi-spotlight me-1"></i> Limelight</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="/packages/">All Packages</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories/">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="/grids/">Grids</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+      </ul>
+      <div class="d-flex gap-2 align-items-center justify-content-center justify-content-md-end flex-wrap mt-2 mt-md-0">
+        <!-- Language selector -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="lang-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select language">
+            <i class="bi bi-translate me-1"></i> EN
+          </button>
+          <ul class="dropdown-menu dropdown-menu-start dropdown-menu-md-end" aria-labelledby="lang-dropdown">
+            <li><a class="dropdown-item active" href="?lang=en"><span class="me-2">🇺🇸</span> English</a></li>
+            <li><a class="dropdown-item" href="?lang=es"><span class="me-2">🇪🇸</span> Español</a></li>
+            <li><a class="dropdown-item" href="?lang=fr"><span class="me-2">🇫🇷</span> Français</a></li>
+          </ul>
+        </div>
+        <button id="theme-toggle" class="btn btn-sm btn-outline-light" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+          <i class="bi bi-moon-stars" id="theme-icon"></i>
+        </button>
+        <a href="/add/" class="btn btn-sm btn-warning fw-semibold text-dark"><i class="bi bi-plus-circle me-1"></i> Submit</a>
+        <a href="/login/" class="btn btn-sm btn-outline-light">Log in</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Package hero -->
+<header class="pkg-hero">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-2">
+      <ol class="breadcrumb mb-0" style="font-size:.8rem;">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/packages/">Packages</a></li>
+        <li class="breadcrumb-item"><a href="/category/database/">Database &amp; ORM</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Flask-SQLAlchemy</li>
+      </ol>
+    </nav>
+
+    <!-- Package title row -->
+    <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+      <h1 class="mb-0">Flask-SQLAlchemy</h1>
+      <span class="health-badge hb-active fs-6">Active</span>
+    </div>
+
+    <p class="pkg-subtitle mb-3">Adds SQLAlchemy ORM support to Flask. The most widely used database integration for Flask applications, supporting multiple databases through a clean, Pythonic API.</p>
+
+    <!-- Quick stat chips -->
+    <div class="d-flex flex-wrap gap-2 mb-3">
+      <span class="stat-chip"><i class="bi bi-star-fill text-warning"></i> 4,100 stars</span>
+      <span class="stat-chip"><i class="bi bi-diagram-2"></i> 712 forks</span>
+      <span class="stat-chip"><i class="bi bi-download"></i> 2.3M / month</span>
+      <span class="stat-chip"><i class="bi bi-tag"></i> v3.1.1</span>
+      <span class="stat-chip"><i class="bi bi-calendar-check"></i> Updated 12 days ago</span>
+    </div>
+
+    <!-- External links -->
+    <div class="pkg-hero-links d-flex flex-wrap gap-3">
+      <a href="https://github.com/pallets-eco/flask-sqlalchemy" rel="noopener" target="_blank">
+        <i class="bi bi-github me-1"></i> GitHub
+      </a>
+      <a href="https://pypi.org/project/flask-sqlalchemy/" rel="noopener" target="_blank">
+        <i class="bi bi-box me-1"></i> PyPI
+      </a>
+      <a href="https://flask-sqlalchemy.readthedocs.io/" rel="noopener" target="_blank">
+        <i class="bi bi-book me-1"></i> Documentation
+      </a>
+      <a href="https://github.com/pallets-eco/flask-sqlalchemy/issues" rel="noopener" target="_blank">
+        <i class="bi bi-bug me-1"></i> Issue Tracker
+      </a>
+      <a href="https://github.com/pallets-eco/flask-sqlalchemy/blob/main/CHANGES.rst" rel="noopener" target="_blank">
+        <i class="bi bi-journal-text me-1"></i> Changelog
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- Main content -->
+<main class="py-4">
+  <div class="container">
+
+    <!-- KPI metric row -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3 col-lg">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="bi bi-star-fill text-warning"></i></div>
+          <div class="metric-val">4.1k</div>
+          <div class="metric-label">GitHub Stars</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="bi bi-diagram-2"></i></div>
+          <div class="metric-val">712</div>
+          <div class="metric-label">Forks</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="bi bi-eye"></i></div>
+          <div class="metric-val">88</div>
+          <div class="metric-label">Watchers</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="bi bi-exclamation-circle"></i></div>
+          <div class="metric-val">24</div>
+          <div class="metric-label">Open Issues</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="bi bi-download"></i></div>
+          <div class="metric-val">2.3M</div>
+          <div class="metric-label">Monthly Downloads</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="bi bi-people"></i></div>
+          <div class="metric-val">148</div>
+          <div class="metric-label">Contributors</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="row g-4">
+
+      <!-- Main column -->
+      <div class="col-lg-8">
+
+        <!-- README / Description -->
+        <div class="content-panel mb-4">
+          <div class="panel-head">
+            <span><i class="bi bi-file-text me-1"></i> README</span>
+            <a href="https://github.com/pallets-eco/flask-sqlalchemy#readme" rel="noopener" target="_blank" class="text-muted small" style="text-transform:none;letter-spacing:0;font-weight:400;">View on GitHub <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+          </div>
+          <div class="panel-body readme-body">
+
+            <h2>Flask-SQLAlchemy</h2>
+            <p>Flask-SQLAlchemy is an extension for Flask that adds support for <a href="https://www.sqlalchemy.org/" rel="noopener" target="_blank">SQLAlchemy</a> to your application. It aims to simplify using SQLAlchemy with Flask by providing useful defaults and extra helpers that make it easier to accomplish common tasks.</p>
+
+            <h3>Installation</h3>
+            <pre><code>pip install flask-sqlalchemy</code></pre>
+
+            <h3>Quickstart</h3>
+            <p>Create the extension, set the database URI, then use the model base class to define models:</p>
+            <pre><code>from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String)
+
+with app.app_context():
+    db.create_all()</code></pre>
+
+            <h3>Querying</h3>
+            <p>Use the <code>session</code> object to query the database or the shorthand <code>Model.query</code> property (deprecated in SQLAlchemy 2.x; use <code>db.session.execute()</code> instead):</p>
+            <pre><code># SQLAlchemy 2.x style
+users = db.session.execute(db.select(User).order_by(User.username)).scalars()
+
+# Get by primary key (raises 404 if missing)
+user = db.get_or_404(User, user_id)</code></pre>
+
+            <h3>Compatibility</h3>
+            <p>Flask-SQLAlchemy 3.x requires Python 3.8+ and SQLAlchemy 2.0+. It supports all database backends supported by SQLAlchemy including PostgreSQL, MySQL, SQLite, Oracle, and Microsoft SQL Server.</p>
+
+            <p class="text-muted small mt-3"><i class="bi bi-info-circle me-1"></i> Showing abbreviated README. <a href="https://flask-sqlalchemy.readthedocs.io/" rel="noopener" target="_blank">Read the full documentation →</a></p>
+
+          </div>
+        </div>
+
+        <!-- Release / version history -->
+        <div class="content-panel mb-4">
+          <div class="panel-head">
+            <span><i class="bi bi-clock-history me-1"></i> Release History</span>
+            <a href="https://pypi.org/project/flask-sqlalchemy/#history" rel="noopener" target="_blank" class="text-muted small" style="text-transform:none;letter-spacing:0;font-weight:400;">All versions <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+          </div>
+          <div class="panel-body p-0">
+            <table class="table table-sm table-hover mb-0 version-table">
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-3">Version</th>
+                  <th>Released</th>
+                  <th>Python</th>
+                  <th class="pe-3">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="ps-3"><span class="version-tag">3.1.1</span> <span class="badge bg-success-subtle text-success ms-1" style="font-size:.65rem;">Latest</span></td>
+                  <td>2024-04-19</td>
+                  <td>&ge;3.8</td>
+                  <td class="pe-3 text-muted">Patch release; fixes session scoping edge case</td>
+                </tr>
+                <tr>
+                  <td class="ps-3"><span class="version-tag">3.1.0</span></td>
+                  <td>2024-02-07</td>
+                  <td>&ge;3.8</td>
+                  <td class="pe-3 text-muted">Adds <code>db.get_or_404</code> helper</td>
+                </tr>
+                <tr>
+                  <td class="ps-3"><span class="version-tag">3.0.5</span></td>
+                  <td>2023-11-14</td>
+                  <td>&ge;3.8</td>
+                  <td class="pe-3 text-muted">SQLAlchemy 2.0 compatibility improvements</td>
+                </tr>
+                <tr>
+                  <td class="ps-3"><span class="version-tag">3.0.0</span></td>
+                  <td>2023-05-03</td>
+                  <td>&ge;3.8</td>
+                  <td class="pe-3 text-muted">Major release; drops legacy query interface</td>
+                </tr>
+                <tr>
+                  <td class="ps-3"><span class="version-tag">2.5.1</span></td>
+                  <td>2021-12-22</td>
+                  <td>&ge;3.6</td>
+                  <td class="pe-3 text-muted">Last 2.x release; SQLAlchemy 1.4 support</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Related packages -->
+        <div class="content-panel">
+          <div class="panel-head">
+            <span><i class="bi bi-grid me-1"></i> Related Packages</span>
+            <a href="/category/database/" class="text-muted small" style="text-transform:none;letter-spacing:0;font-weight:400;">Browse Database &amp; ORM →</a>
+          </div>
+          <div class="panel-body">
+
+            <div class="rel-pkg-row">
+              <div>
+                <a href="/package/flask-migrate/" class="rel-pkg-name">Flask-Migrate</a>
+                <div class="rel-pkg-desc">Alembic-based database migration support for Flask-SQLAlchemy.</div>
+              </div>
+              <span class="rel-pkg-stars ms-3"><i class="bi bi-star-fill text-warning"></i> 2.3k</span>
+            </div>
+
+            <div class="rel-pkg-row">
+              <div>
+                <a href="/package/flask-marshmallow/" class="rel-pkg-name">Flask-Marshmallow</a>
+                <div class="rel-pkg-desc">Serialization / deserialization layer that bridges Flask-SQLAlchemy and Marshmallow.</div>
+              </div>
+              <span class="rel-pkg-stars ms-3"><i class="bi bi-star-fill text-warning"></i> 838</span>
+            </div>
+
+            <div class="rel-pkg-row">
+              <div>
+                <a href="/package/flask-smorest/" class="rel-pkg-name">Flask-Smorest</a>
+                <div class="rel-pkg-desc">REST API framework on top of Flask and Marshmallow with automatic OpenAPI docs.</div>
+              </div>
+              <span class="rel-pkg-stars ms-3"><i class="bi bi-star-fill text-warning"></i> 615</span>
+            </div>
+
+            <div class="rel-pkg-row">
+              <div>
+                <a href="/package/sqlalchemy-utils/" class="rel-pkg-name">SQLAlchemy-Utils</a>
+                <div class="rel-pkg-desc">Various utility functions and data types for SQLAlchemy.</div>
+              </div>
+              <span class="rel-pkg-stars ms-3"><i class="bi bi-star-fill text-warning"></i> 1.1k</span>
+            </div>
+
+            <div class="rel-pkg-row">
+              <div>
+                <a href="/package/flask-peewee/" class="rel-pkg-name">Flask-Peewee</a>
+                <div class="rel-pkg-desc">Peewee ORM integration for Flask applications.</div>
+              </div>
+              <span class="rel-pkg-stars ms-3"><i class="bi bi-star-fill text-warning"></i> 738</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /main column -->
+
+      <!-- Sidebar -->
+      <aside class="col-lg-4" aria-label="Package metadata">
+
+        <!-- Metadata -->
+        <div class="content-panel mb-4">
+          <div class="panel-head"><i class="bi bi-info-circle me-1"></i> Package Info</div>
+          <div class="panel-body">
+            <dl class="meta-list mb-0">
+              <dt>Current Version</dt>
+              <dd><span class="version-tag">3.1.1</span></dd>
+
+              <dt>License</dt>
+              <dd><a href="https://opensource.org/licenses/BSD-3-Clause" rel="noopener" target="_blank">BSD 3-Clause</a></dd>
+
+              <dt>Author / Maintainer</dt>
+              <dd>Pallets Ecosystem</dd>
+
+              <dt>Home Page</dt>
+              <dd><a href="https://flask-sqlalchemy.readthedocs.io/" rel="noopener" target="_blank">flask-sqlalchemy.readthedocs.io</a></dd>
+
+              <dt>Repository</dt>
+              <dd><a href="https://github.com/pallets-eco/flask-sqlalchemy" rel="noopener" target="_blank">github.com/pallets-eco/flask-sqlalchemy</a></dd>
+
+              <dt>PyPI</dt>
+              <dd><a href="https://pypi.org/project/flask-sqlalchemy/" rel="noopener" target="_blank">pypi.org/project/flask-sqlalchemy</a></dd>
+
+              <dt>Requires Python</dt>
+              <dd>&ge;3.8</dd>
+
+              <dt>First Release</dt>
+              <dd>2012-06-11</dd>
+
+              <dt>Last Commit</dt>
+              <dd>12 days ago</dd>
+
+              <dt>Added to Limelight</dt>
+              <dd>2023-03-15</dd>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Categories & Tags -->
+        <div class="content-panel mb-4">
+          <div class="panel-head"><i class="bi bi-tag me-1"></i> Categories &amp; Tags</div>
+          <div class="panel-body">
+            <div>
+              <a href="/category/database/" class="tag-pill">Database &amp; ORM</a>
+              <a href="/category/sqlalchemy/" class="tag-pill">SQLAlchemy</a>
+              <a href="/tag/orm/" class="tag-pill">ORM</a>
+              <a href="/tag/database/" class="tag-pill">Database</a>
+              <a href="/tag/postgresql/" class="tag-pill">PostgreSQL</a>
+              <a href="/tag/mysql/" class="tag-pill">MySQL</a>
+              <a href="/tag/sqlite/" class="tag-pill">SQLite</a>
+              <a href="/tag/pallets/" class="tag-pill">Pallets</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Install snippet -->
+        <div class="content-panel mb-4">
+          <div class="panel-head"><i class="bi bi-terminal me-1"></i> Install</div>
+          <div class="panel-body p-0">
+            <div class="d-flex align-items-center" style="background:#0f172a;border-radius:0 0 .5rem .5rem;padding:.65rem 1rem;">
+              <code style="color:#86efac;font-size:.82rem;flex-grow:1;">pip install flask-sqlalchemy</code>
+              <button class="btn btn-sm btn-outline-secondary border-0 ms-2 copy-btn" data-copy="pip install flask-sqlalchemy" aria-label="Copy install command" title="Copy to clipboard">
+                <i class="bi bi-clipboard" id="copy-icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Maintainers -->
+        <div class="content-panel mb-4">
+          <div class="panel-head"><i class="bi bi-people me-1"></i> Maintainers</div>
+          <div class="panel-body">
+            <div class="d-flex flex-wrap gap-3">
+              <a href="https://github.com/davidism" rel="noopener" target="_blank" class="d-flex align-items-center gap-2 text-decoration-none">
+                <img src="https://avatars.githubusercontent.com/u/2212082?v=4" alt="davidism avatar" class="maintainer-avatar" />
+                <span style="font-size:.83rem;color:var(--brand);">davidism</span>
+              </a>
+              <a href="https://github.com/untitaker" rel="noopener" target="_blank" class="d-flex align-items-center gap-2 text-decoration-none">
+                <img src="https://avatars.githubusercontent.com/u/837015?v=4" alt="untitaker avatar" class="maintainer-avatar" />
+                <span style="font-size:.83rem;color:var(--brand);">untitaker</span>
+              </a>
+              <a href="https://github.com/asottile" rel="noopener" target="_blank" class="d-flex align-items-center gap-2 text-decoration-none">
+                <img src="https://avatars.githubusercontent.com/u/1810591?v=4" alt="asottile avatar" class="maintainer-avatar" />
+                <span style="font-size:.83rem;color:var(--brand);">asottile</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dependencies -->
+        <div class="content-panel mb-4">
+          <div class="panel-head"><i class="bi bi-box-seam me-1"></i> Dependencies</div>
+          <div class="panel-body">
+            <ul class="list-unstyled mb-0" style="font-size:.83rem;">
+              <li class="d-flex justify-content-between py-1 border-bottom" style="border-color:#f1f5f9 !important;">
+                <a href="/package/flask/" class="text-decoration-none" style="color:var(--brand);">Flask</a>
+                <span class="text-muted">&ge;2.3.3</span>
+              </li>
+              <li class="d-flex justify-content-between py-1 border-bottom" style="border-color:#f1f5f9 !important;">
+                <a href="/package/sqlalchemy/" class="text-decoration-none" style="color:var(--brand);">SQLAlchemy</a>
+                <span class="text-muted">&ge;2.0.16</span>
+              </li>
+              <li class="d-flex justify-content-between py-1">
+                <span class="text-muted">Werkzeug</span>
+                <span class="text-muted">&ge;2.3.3</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Suggest an edit -->
+        <div class="content-panel" style="border-style:dashed;">
+          <div class="panel-body text-center py-3">
+            <i class="bi bi-pencil-square fs-4 d-block mb-2" style="color:var(--brand);"></i>
+            <strong class="d-block mb-1" style="font-size:.9rem;">See an issue?</strong>
+            <p class="text-muted mb-2" style="font-size:.8rem;">Help keep the directory accurate by suggesting an edit to this package entry.</p>
+            <a href="/package/flask-sqlalchemy/edit/" class="btn btn-sm btn-outline-primary w-100">Suggest an Edit</a>
+          </div>
+        </div>
+
+      </aside><!-- /sidebar -->
+
+    </div><!-- /row -->
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <strong class="text-white fs-6"><i class="bi bi-spotlight me-1"></i> Limelight</strong>
+        <p class="mt-2 small">Community-driven directory of open source Flask extensions, frameworks, and projects for all skill levels.</p>
+      </div>
+      <div class="col-md-2">
+        <h3 class="text-white small fw-bold text-uppercase mb-2">Explore</h3>
+        <ul class="list-unstyled small">
+          <li><a href="/packages/">All Packages</a></li>
+          <li><a href="/categories/">Categories</a></li>
+          <li><a href="/grids/">Grids</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <h3 class="text-white small fw-bold text-uppercase mb-2">Community</h3>
+        <ul class="list-unstyled small">
+          <li><a href="/add/">Submit Package</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/api/">API</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <p class="small mb-1">Inspired by <a href="https://djangopackages.org" rel="noopener">Django Packages</a></p>
+        <p class="small mb-0">© 2024 Limelight · Built with ❤️ by the Flask community</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Dark / light theme toggle
+  (function () {
+    var html  = document.documentElement;
+    var btn   = document.getElementById('theme-toggle');
+    var icon  = document.getElementById('theme-icon');
+
+    function applyTheme(theme) {
+      html.setAttribute('data-bs-theme', theme);
+      icon.className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+      localStorage.setItem('ll-theme', theme);
+    }
+
+    // Sync icon with whatever theme the FOUC script already applied
+    applyTheme(html.getAttribute('data-bs-theme') || 'light');
+
+    btn.addEventListener('click', function () {
+      applyTheme(html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark');
+    });
+  })();
+
+  // Copy-to-clipboard for install command
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      navigator.clipboard.writeText(text).then(function () {
+        var icon = btn.querySelector('i');
+        icon.className = 'bi bi-clipboard-check';
+        setTimeout(function () { icon.className = 'bi bi-clipboard'; }, 2000);
+      });
+    });
+  });
+</script>
+</body>
+</html>
