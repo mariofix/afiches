@@ -144,6 +144,73 @@
     [data-bs-theme="dark"] .page-item.disabled .page-link { background: #1e293b; color: #64748b; border-color: #334155; }
     [data-bs-theme="dark"] .page-item.active .page-link { background: var(--brand); border-color: var(--brand); color: #fff; }
     [data-bs-theme="dark"] .text-muted { color: #94a3b8 !important; }
+
+    /* ── Submit modal ───────────────────────────────────────── */
+    .submit-modal .modal-header {
+      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+      color: #fff;
+      border-bottom: none;
+      border-radius: .5rem .5rem 0 0;
+      padding: 1.25rem 1.5rem;
+    }
+    .submit-modal .modal-header .btn-close { filter: invert(1) grayscale(1) brightness(2); }
+    .submit-modal .modal-title { font-weight: 800; font-size: 1.1rem; }
+    .submit-modal .modal-subtitle { font-size: .82rem; opacity: .85; margin-top: .25rem; }
+
+    .submit-modal .slug-label { font-weight: 600; font-size: .875rem; }
+    .submit-modal .slug-hint  { font-size: .77rem; color: #64748b; }
+
+    /* Category radio cards */
+    .cat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: .5rem; }
+    @media (max-width: 480px) { .cat-cards { grid-template-columns: 1fr; } }
+
+    .cat-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .cat-card label {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      border: 2px solid #e2e8f0;
+      border-radius: .5rem;
+      padding: .75rem .9rem;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, box-shadow .15s;
+      background: #fff;
+    }
+    .cat-card label:hover { border-color: var(--brand); background: var(--brand-light); }
+    .cat-card input[type="radio"]:checked + label {
+      border-color: var(--brand);
+      background: var(--brand-light);
+      box-shadow: 0 0 0 3px rgba(29,78,216,.15);
+    }
+    .cat-card .cat-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: .05rem;
+      color: var(--brand);
+    }
+    .cat-card .cat-info { flex: 1; }
+    .cat-card .cat-name { font-weight: 700; font-size: .875rem; color: #1e293b; line-height: 1.2; }
+    .cat-card .cat-desc { font-size: .77rem; color: #64748b; margin-top: .2rem; line-height: 1.4; }
+    .cat-card input[type="radio"]:checked + label .cat-name { color: var(--brand-dark); }
+    .cat-card input[type="radio"]:checked + label .cat-desc { color: #374151; }
+
+    /* Dark overrides for modal */
+    [data-bs-theme="dark"] .submit-modal .modal-content { background: #1e293b; border-color: #334155; }
+    [data-bs-theme="dark"] .submit-modal .modal-body,
+    [data-bs-theme="dark"] .submit-modal .modal-footer { background: #1e293b; color: #e2e8f0; }
+    [data-bs-theme="dark"] .submit-modal .slug-hint { color: #94a3b8; }
+    [data-bs-theme="dark"] .cat-card label { background: #0f172a; border-color: #334155; }
+    [data-bs-theme="dark"] .cat-card label:hover { background: rgba(29,78,216,.2); border-color: var(--brand); }
+    [data-bs-theme="dark"] .cat-card input[type="radio"]:checked + label { background: rgba(29,78,216,.25); border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96,165,250,.2); }
+    [data-bs-theme="dark"] .cat-card .cat-name { color: #e2e8f0; }
+    [data-bs-theme="dark"] .cat-card .cat-desc { color: #94a3b8; }
+    [data-bs-theme="dark"] .cat-card input[type="radio"]:checked + label .cat-name { color: #93c5fd; }
+    [data-bs-theme="dark"] .cat-card input[type="radio"]:checked + label .cat-desc { color: #cbd5e1; }
+    [data-bs-theme="dark"] .submit-modal .form-control { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+    [data-bs-theme="dark"] .submit-modal .form-control::placeholder { color: #64748b; }
+    [data-bs-theme="dark"] .submit-modal .form-control:focus { background: #0f172a; border-color: var(--brand); color: #e2e8f0; box-shadow: 0 0 0 .2rem rgba(29,78,216,.35); }
+    [data-bs-theme="dark"] .submit-modal .modal-footer { border-top-color: #334155; }
   </style>
 </head>
 <body>
@@ -177,7 +244,7 @@
         <button id="theme-toggle" class="btn btn-sm btn-outline-light" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
           <i class="bi bi-moon-stars" id="theme-icon"></i>
         </button>
-        <a href="/add/" class="btn btn-sm btn-warning fw-semibold text-dark"><i class="bi bi-plus-circle me-1"></i> Submit</a>
+        <button type="button" class="btn btn-sm btn-warning fw-semibold text-dark" data-bs-toggle="modal" data-bs-target="#submitModal"><i class="bi bi-plus-circle me-1"></i> Submit</button>
         <a href="/login/" class="btn btn-sm btn-outline-light">Log in</a>
       </div>
     </div>
@@ -422,6 +489,104 @@
   </div>
 </main>
 
+<!-- ── Submit Package Modal ───────────────────────────────────── -->
+<div class="modal fade submit-modal" id="submitModal" tabindex="-1" aria-labelledby="submitModalLabel" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:520px;">
+    <div class="modal-content border-0 shadow-lg overflow-hidden">
+
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="submitModalLabel"><i class="bi bi-plus-circle me-2"></i>Submit a Package</h2>
+          <p class="modal-subtitle mb-0">Help other Flask developers discover your project.</p>
+        </div>
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-4">
+        <form id="submitPackageForm" novalidate>
+
+          <!-- Slug -->
+          <div class="mb-4">
+            <label for="pkgSlug" class="form-label slug-label">PyPI / GitHub slug <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
+              <input type="text" class="form-control" id="pkgSlug" name="slug"
+                placeholder="e.g. flask-login or myorg/myrepo"
+                pattern="[a-zA-Z0-9_\-\./]+"
+                required
+                autocomplete="off"
+                aria-describedby="slugHint" />
+              <div class="invalid-feedback">Please enter a valid slug (letters, numbers, hyphens, underscores).</div>
+            </div>
+            <div id="slugHint" class="slug-hint mt-1">Use the PyPI package name or the GitHub <code>owner/repo</code> path.</div>
+          </div>
+
+          <!-- Category -->
+          <div class="mb-2">
+            <p class="form-label slug-label mb-2">Package category <span class="text-danger">*</span></p>
+            <div class="cat-cards" role="group" aria-labelledby="catGroupLabel">
+              <span id="catGroupLabel" class="visually-hidden">Select a category</span>
+
+              <div class="cat-card">
+                <input type="radio" name="category" id="cat-project" value="project" required />
+                <label for="cat-project">
+                  <span class="cat-icon"><i class="bi bi-kanban"></i></span>
+                  <span class="cat-info">
+                    <span class="cat-name">Project</span>
+                    <span class="cat-desc">A complete application or boilerplate built with Flask — ready to run or fork as a starting point.</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="cat-card">
+                <input type="radio" name="category" id="cat-framework" value="framework" />
+                <label for="cat-framework">
+                  <span class="cat-icon"><i class="bi bi-building"></i></span>
+                  <span class="cat-info">
+                    <span class="cat-name">Framework</span>
+                    <span class="cat-desc">Builds on top of Flask to provide a higher-level, opinionated structure for building web apps.</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="cat-card">
+                <input type="radio" name="category" id="cat-extension" value="extension" />
+                <label for="cat-extension">
+                  <span class="cat-icon"><i class="bi bi-puzzle"></i></span>
+                  <span class="cat-info">
+                    <span class="cat-name">Extension</span>
+                    <span class="cat-desc">Integrates with Flask's app context and follows the <code>init_app()</code> pattern to add a specific feature.</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="cat-card">
+                <input type="radio" name="category" id="cat-module" value="module" />
+                <label for="cat-module">
+                  <span class="cat-icon"><i class="bi bi-box-seam"></i></span>
+                  <span class="cat-info">
+                    <span class="cat-name">Module</span>
+                    <span class="cat-desc">A reusable Python library or utility that works well with Flask but is not tied exclusively to it.</span>
+                  </span>
+                </label>
+              </div>
+
+            </div>
+            <div id="catError" class="text-danger mt-2" style="font-size:.8rem;display:none;"><i class="bi bi-exclamation-circle me-1"></i>Please select a category.</div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer px-4 pb-4 border-0 gap-2">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-1"></i>Cancel</button>
+        <button type="button" class="btn btn-primary px-4 fw-semibold" id="submitModalBtn"><i class="bi bi-send me-1"></i>Submit Package</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="container">
     <div class="row g-3">
@@ -465,7 +630,51 @@
     });
   });
 
-  // Dark / light theme toggle
+  // Submit modal validation
+  document.getElementById('submitModalBtn').addEventListener('click', function () {
+    var form = document.getElementById('submitPackageForm');
+    var slug = document.getElementById('pkgSlug');
+    var catSelected = form.querySelector('input[name="category"]:checked');
+    var catError = document.getElementById('catError');
+    var valid = true;
+
+    // Slug validation
+    if (!slug.value.trim() || !slug.checkValidity()) {
+      slug.classList.add('is-invalid');
+      valid = false;
+    } else {
+      slug.classList.remove('is-invalid');
+      slug.classList.add('is-valid');
+    }
+
+    // Category validation
+    if (!catSelected) {
+      catError.style.display = 'block';
+      valid = false;
+    } else {
+      catError.style.display = 'none';
+    }
+
+    if (valid) {
+      // In production, POST to /add/ with the collected data.
+      // For now, close modal and show a toast-style alert.
+      var modal = bootstrap.Modal.getInstance(document.getElementById('submitModal'));
+      modal.hide();
+      slug.classList.remove('is-valid');
+      form.reset();
+      alert('✅ Package "' + slug.value.trim() + '" submitted as ' + catSelected.value + '!\n\nIn production this would POST to /add/.');
+    }
+  });
+
+  // Reset validation state when modal is closed
+  document.getElementById('submitModal').addEventListener('hidden.bs.modal', function () {
+    var form = document.getElementById('submitPackageForm');
+    form.reset();
+    document.getElementById('pkgSlug').classList.remove('is-invalid', 'is-valid');
+    document.getElementById('catError').style.display = 'none';
+  });
+
+
   (function () {
     var html  = document.documentElement;
     var btn   = document.getElementById('theme-toggle');
