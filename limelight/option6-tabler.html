@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limelight – Browse & Filter Flask Packages by Category</title>
+  <meta name="description" content="Limelight lets you filter and browse 1,240+ open source Flask extensions by category, stars, activity, and downloads. Find the right package for authentication, ORM, REST APIs, admin panels, and more." />
+  <meta name="keywords" content="Flask extensions filter, Flask packages browse, Flask authentication packages, Flask ORM, Flask REST API, Flask admin, Flask forms" />
+  <meta name="author" content="Limelight Community" />
+  <link rel="canonical" href="https://flaskpackages.pythonanywhere.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Limelight – Browse & Filter Flask Packages by Category" />
+  <meta property="og:description" content="Filter and browse 1,240+ open source Flask extensions by category and activity." />
+  <meta property="og:url" content="https://flaskpackages.pythonanywhere.com/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Limelight – Browse & Filter Flask Packages by Category" />
+  <meta name="twitter:description" content="Find Flask packages by filtering 1,240+ extensions, frameworks, and modules." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Limelight",
+    "url": "https://flaskpackages.pythonanywhere.com/",
+    "description": "Discover and explore open source Flask extensions, frameworks, modules, and projects.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://flaskpackages.pythonanywhere.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Tabler 1.4.0 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css" />
+  <!-- Tabler Icons (webfont) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+
+  <style>
+    /* Brand palette + font override */
+    :root {
+      --tbl-brand:      #1d4ed8;
+      --tbl-brand-dark: #1e3a8a;
+      --tbl-brand-lt:   #eff6ff;
+      /* Override Tabler's default Inter font */
+      --tbl-font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      /* No vertical sidebar in this layout */
+      --tbl-navbar-width: 0px;
+    }
+    body { font-family: var(--tbl-font-sans); margin: 0; }
+
+    /* Remove Tabler's default bottom border and shadow on the navbar */
+    .navbar { border-bottom: none !important; box-shadow: none !important; }
+
+    /* Ensure page-wrapper/page-body don't inherit sidebar left-padding */
+    .page-wrapper, .page-body { padding-left: 0 !important; margin-left: 0 !important; }
+
+    /* Equalise navbar button heights */
+    .navbar .btn-sm { padding-top: .3rem; padding-bottom: .3rem; line-height: 1.5; }
+
+    /* ── Hero banner ─────────────────────────────────────────── */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--tbl-brand-dark) 0%, var(--tbl-brand) 100%);
+      padding: 2.5rem 0 2rem;
+      color: #fff;
+    }
+    .hero-banner h1 { font-size: 1.75rem; line-height: 1.2; }
+    .hero-banner p  { opacity: .85; max-width: 600px; }
+    .hero-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(255,255,255,.12);
+      border-radius: var(--tbl-border-radius, 4px);
+      padding: .2em .75em;
+      font-size: .8rem;
+      margin-right: .4rem;
+    }
+
+    /* ── Sticky filter bar ───────────────────────────────────── */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--tbl-border-color, #e6e7e9);
+      padding: .6rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* ── Category filter sidebar ─────────────────────────────── */
+    .cat-nav-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .35rem .6rem;
+      border-radius: var(--tbl-border-radius, 4px);
+      color: var(--tbl-body-color, #354052);
+      text-decoration: none;
+      font-size: .85rem;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      transition: background .1s, color .1s;
+    }
+    .cat-nav-item:hover {
+      background: var(--tbl-brand-lt);
+      color: var(--tbl-brand);
+    }
+    .cat-nav-item.active {
+      background: var(--tbl-brand-lt);
+      color: var(--tbl-brand);
+      font-weight: 600;
+    }
+    .cat-nav-item.active .badge { background: var(--tbl-brand) !important; color: #fff !important; }
+
+    /* ── Package card custom layout ──────────────────────────── */
+    .pkg-card-body { flex-grow: 1; }
+    .pkg-name {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--tbl-brand-dark);
+      text-decoration: none;
+    }
+    .pkg-name:hover { text-decoration: underline; }
+    .pkg-desc {
+      font-size: .83rem;
+      color: var(--tbl-secondary, #616876);
+      line-height: 1.5;
+      margin: .35rem 0 0;
+    }
+    .pkg-stars { font-size: .78rem; color: var(--tbl-secondary, #616876); white-space: nowrap; }
+
+    /* CTA dashed card */
+    .card-cta {
+      border-style: dashed !important;
+      background: var(--tbl-brand-lt) !important;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+<!-- ═══════════════════════════════════════
+     NAVBAR  (Tabler dark navbar)
+════════════════════════════════════════ -->
+<header class="navbar navbar-expand-md navbar-dark d-print-none" style="background: var(--tbl-brand-dark);">
+  <div class="container-xl">
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Brand -->
+    <a href="/" class="navbar-brand navbar-brand-autodark me-3">
+      <i class="ti ti-spotlight me-1"></i>
+      <span class="fw-bold">Limelight</span>
+    </a>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse" id="navbar-main">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="/packages/">All Packages</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories/">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="/grids/">Grids</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+      </ul>
+
+      <!-- Right-side actions -->
+      <div class="navbar-nav flex-row order-md-last gap-2">
+        <a href="/add/" class="btn btn-warning btn-sm fw-semibold">
+          <i class="ti ti-circle-plus me-1"></i> Submit
+        </a>
+        <a href="/login/" class="btn btn-outline-light btn-sm">Log in</a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     HERO  (Tabler page-header style)
+════════════════════════════════════════ -->
+<header class="hero-banner">
+  <div class="container-xl">
+    <h1 class="fw-bold mb-2">Discover open source Flask packages</h1>
+    <p class="mb-3">
+      Extensions, frameworks, modules, and projects – curated by the Flask community.
+      Inspired by <a href="https://djangopackages.org" class="text-white text-decoration-underline" rel="noopener">Django Packages</a>.
+    </p>
+    <div>
+      <span class="hero-stat"><i class="ti ti-box"></i> 1,240+ Packages</span>
+      <span class="hero-stat"><i class="ti ti-layout-grid"></i> 48 Categories</span>
+      <span class="hero-stat"><i class="ti ti-users"></i> 320+ Contributors</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     STICKY FILTER BAR
+════════════════════════════════════════ -->
+<div class="filter-bar">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+
+      <!-- Search -->
+      <div class="col-md-5">
+        <form action="/search/" method="get" role="search" aria-label="Search packages">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="ti ti-search text-muted"></i>
+            </span>
+            <input
+              type="search"
+              name="q"
+              class="form-control border-start-0"
+              placeholder="Search Flask packages…"
+              aria-label="Search packages"
+            />
+          </div>
+        </form>
+      </div>
+
+      <!-- Sort -->
+      <div class="col-6 col-md-3">
+        <select
+          class="form-select form-select-sm"
+          aria-label="Sort packages"
+          onchange="window.location='/packages/?sort='+this.value"
+        >
+          <option value="trending" selected>Sort: Trending</option>
+          <option value="stars">Most Stars</option>
+          <option value="downloads">Most Downloads</option>
+          <option value="newest">Newest</option>
+          <option value="updated">Recently Updated</option>
+        </select>
+      </div>
+
+      <!-- Health filter -->
+      <div class="col-6 col-md-2">
+        <select
+          class="form-select form-select-sm"
+          aria-label="Filter by health status"
+          onchange="window.location='/packages/?health='+this.value"
+        >
+          <option value="" selected>All packages</option>
+          <option value="active">Active</option>
+          <option value="stale">Low activity</option>
+        </select>
+      </div>
+
+      <!-- Count -->
+      <div class="col-md-2 text-md-end d-none d-md-block">
+        <span class="text-muted small">1,240 packages</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════ -->
+<div class="page-wrapper">
+  <div class="page-body">
+    <div class="container-xl py-4">
+      <div class="row g-4">
+
+        <!-- ── LEFT: Category filter sidebar ──────────────────── -->
+        <aside class="col-lg-3 col-xl-2 d-none d-lg-block" aria-label="Category filter">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:#64748b;">
+                Filter by Category
+              </h3>
+            </div>
+            <div class="card-body p-2">
+              <button class="cat-nav-item active" type="button">
+                All
+                <span class="badge bg-secondary-lt text-secondary ms-auto">1,240</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Authentication
+                <span class="badge bg-secondary-lt text-secondary ms-auto">84</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                REST / APIs
+                <span class="badge bg-secondary-lt text-secondary ms-auto">91</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Database &amp; ORM
+                <span class="badge bg-secondary-lt text-secondary ms-auto">62</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Admin Panels
+                <span class="badge bg-secondary-lt text-secondary ms-auto">37</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Forms
+                <span class="badge bg-secondary-lt text-secondary ms-auto">29</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Security
+                <span class="badge bg-secondary-lt text-secondary ms-auto">33</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Testing
+                <span class="badge bg-secondary-lt text-secondary ms-auto">41</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Frontend / UI
+                <span class="badge bg-secondary-lt text-secondary ms-auto">31</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Caching
+                <span class="badge bg-secondary-lt text-secondary ms-auto">18</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Email
+                <span class="badge bg-secondary-lt text-secondary ms-auto">16</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Task Queues
+                <span class="badge bg-secondary-lt text-secondary ms-auto">15</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Deployment
+                <span class="badge bg-secondary-lt text-secondary ms-auto">23</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Logging
+                <span class="badge bg-secondary-lt text-secondary ms-auto">14</span>
+              </button>
+              <button class="cat-nav-item" type="button">
+                Asynchronous
+                <span class="badge bg-secondary-lt text-secondary ms-auto">22</span>
+              </button>
+              <a href="/categories/" class="cat-nav-item fw-semibold" style="color:var(--tbl-brand);text-decoration:none;">
+                View all 48 →
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ── RIGHT: Package card grid ───────────────────────── -->
+        <section class="col-lg-9 col-xl-10" aria-labelledby="pkg-grid-h">
+          <h1 class="visually-hidden" id="pkg-grid-h">Flask packages</h1>
+
+          <!-- Mobile category pills (Tabler btn-list) -->
+          <div class="d-flex d-lg-none flex-wrap gap-1 mb-3" role="group" aria-label="Category filter">
+            <a href="/packages/"              class="btn btn-sm btn-primary">All</a>
+            <a href="/category/authentication/" class="btn btn-sm btn-outline-secondary">Auth</a>
+            <a href="/category/rest-api/"       class="btn btn-sm btn-outline-secondary">REST</a>
+            <a href="/category/database/"       class="btn btn-sm btn-outline-secondary">Database</a>
+            <a href="/category/admin/"          class="btn btn-sm btn-outline-secondary">Admin</a>
+            <a href="/categories/"              class="btn btn-sm btn-outline-primary">More…</a>
+          </div>
+
+          <!-- Cards grid -->
+          <div class="row g-3">
+
+            <!-- Flask-SQLAlchemy -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-sqlalchemy/" class="pkg-name">Flask-SQLAlchemy</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 4.1k
+                    </span>
+                  </div>
+                  <p class="pkg-desc">Adds SQLAlchemy ORM support to Flask. The most widely used database integration for Flask applications.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-blue-lt text-blue">Database</span>
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-check me-1"></i>Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flask-RESTful -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-restful/" class="pkg-name">Flask-RESTful</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 6.7k
+                    </span>
+                  </div>
+                  <p class="pkg-desc">Extension for quickly building REST APIs using class-based views with request parsing and error handling.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-purple-lt text-purple">REST / APIs</span>
+                  <span class="badge bg-warning-lt text-warning">
+                    <i class="ti ti-clock me-1"></i>Low activity
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flask-Login -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-login/" class="pkg-name">Flask-Login</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 3.5k
+                    </span>
+                  </div>
+                  <p class="pkg-desc">User session management for Flask. Handles login, logout, and session persistence across requests.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-cyan-lt text-cyan">Authentication</span>
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-check me-1"></i>Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flask-WTF -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-wtf/" class="pkg-name">Flask-WTF</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 1.4k
+                    </span>
+                  </div>
+                  <p class="pkg-desc">Simple Flask + WTForms integration with CSRF protection, file uploads, and reCAPTCHA support.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-teal-lt text-teal">Forms</span>
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-check me-1"></i>Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flask-CORS -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-cors/" class="pkg-name">Flask-CORS</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 871
+                    </span>
+                  </div>
+                  <p class="pkg-desc">Cross-Origin Resource Sharing (CORS) support for Flask. Works with all modern browsers and preflight requests.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-red-lt text-red">Security</span>
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-check me-1"></i>Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flask-Migrate -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-migrate/" class="pkg-name">Flask-Migrate</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 2.3k
+                    </span>
+                  </div>
+                  <p class="pkg-desc">Alembic-based database migration support for Flask-SQLAlchemy. Handles schema version control.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-blue-lt text-blue">Database</span>
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-check me-1"></i>Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flask-Admin -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-admin/" class="pkg-name">Flask-Admin</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 5.5k
+                    </span>
+                  </div>
+                  <p class="pkg-desc">Simple and extensible administrative interface for Flask. Works with SQLAlchemy, MongoEngine, and more.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-orange-lt text-orange">Admin</span>
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-check me-1"></i>Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flask-Caching -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body pkg-card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <a href="/package/flask-caching/" class="pkg-name">Flask-Caching</a>
+                    <span class="pkg-stars">
+                      <i class="ti ti-star-filled text-yellow"></i> 782
+                    </span>
+                  </div>
+                  <p class="pkg-desc">Caching support for Flask applications. Supports Redis, Memcached, SimpleCache, and filesystem backends.</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center py-2">
+                  <span class="badge bg-lime-lt text-lime">Caching</span>
+                  <span class="badge bg-success-lt text-success">
+                    <i class="ti ti-check me-1"></i>Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA card -->
+            <div class="col-sm-6 col-xl-4">
+              <div class="card h-100 card-cta">
+                <div class="card-body d-flex flex-column align-items-center justify-content-center text-center py-4">
+                  <span class="avatar avatar-lg bg-blue-lt text-blue mb-3">
+                    <i class="ti ti-circle-plus fs-2"></i>
+                  </span>
+                  <h3 class="card-title mb-1">Know a missing package?</h3>
+                  <p class="text-muted small mb-3">Submit it to help other Flask developers discover it.</p>
+                  <a href="/add/" class="btn btn-primary btn-sm w-100">
+                    <i class="ti ti-circle-plus me-1"></i> Submit a Package
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /cards grid -->
+
+          <!-- ── Pagination (Tabler) ─────────────────────────── -->
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <p class="text-muted small mb-0">Showing 1–9 of 1,240 packages</p>
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18"/></svg>
+                  prev
+                </a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="/packages/?page=2">2</a></li>
+              <li class="page-item"><a class="page-link" href="/packages/?page=3">3</a></li>
+              <li class="page-item"><span class="page-link text-muted">…</span></li>
+              <li class="page-item"><a class="page-link" href="/packages/?page=138">138</a></li>
+              <li class="page-item">
+                <a class="page-link" href="/packages/?page=2" aria-label="Next">
+                  next
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </section>
+        <!-- /package grid -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER  (Tabler footer component)
+  ════════════════════════════════════════ -->
+  <footer class="footer footer-transparent d-print-none" style="background: var(--tbl-brand-dark); color: rgba(255,255,255,.7);">
+    <div class="container-xl">
+      <div class="row g-3 py-4">
+
+        <div class="col-12 col-md-4">
+          <div class="fw-bold text-white mb-2">
+            <i class="ti ti-spotlight me-1"></i> Limelight
+          </div>
+          <p class="small mb-0">
+            Community-driven directory of open source Flask extensions,
+            frameworks, and projects for all skill levels.
+          </p>
+        </div>
+
+        <div class="col-6 col-md-2 offset-md-1">
+          <h4 class="text-white small fw-bold text-uppercase mb-2">Explore</h4>
+          <ul class="list-unstyled small">
+            <li><a href="/packages/"   class="footer-link" style="color:rgba(255,255,255,.7);">All Packages</a></li>
+            <li><a href="/categories/" class="footer-link" style="color:rgba(255,255,255,.7);">Categories</a></li>
+            <li><a href="/grids/"      class="footer-link" style="color:rgba(255,255,255,.7);">Grids</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2">
+          <h4 class="text-white small fw-bold text-uppercase mb-2">Community</h4>
+          <ul class="list-unstyled small">
+            <li><a href="/add/"   class="footer-link" style="color:rgba(255,255,255,.7);">Submit Package</a></li>
+            <li><a href="/about/" class="footer-link" style="color:rgba(255,255,255,.7);">About</a></li>
+            <li><a href="/api/"   class="footer-link" style="color:rgba(255,255,255,.7);">API</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-3 text-md-end">
+          <p class="small mb-1">Inspired by <a href="https://djangopackages.org" rel="noopener" style="color:rgba(255,255,255,.7);">Django Packages</a></p>
+          <p class="small mb-0">© 2024 Limelight · Built with ❤️ by the Flask community</p>
+        </div>
+
+      </div>
+      <div class="border-top border-secondary py-2 text-center">
+        <small>Powered by <strong class="text-white">Tabler</strong> 1.4.0</small>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-wrapper -->
+
+<!-- Tabler JS -->
+<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/js/tabler.min.js"></script>
+<script>
+  // Category filter – toggle active state (demo; production: server-side routing)
+  document.querySelectorAll('.cat-nav-item[type="button"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.cat-nav-item[type="button"]').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

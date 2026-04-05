@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limelight – Flask Extensions, Frameworks & Packages</title>
+  <meta name="description" content="Limelight is a minimal, content-first directory of open source Flask extensions, frameworks, and packages. Find exactly what you need for your Flask project." />
+  <meta name="keywords" content="Flask extensions, Flask packages, Python Flask open source, Flask authentication, Flask ORM, Flask REST, Flask admin panels" />
+  <meta name="author" content="Limelight Community" />
+  <link rel="canonical" href="https://flaskpackages.pythonanywhere.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Limelight – Flask Extensions, Frameworks & Packages" />
+  <meta property="og:description" content="Minimal, content-first directory of open source Flask extensions and packages." />
+  <meta property="og:url" content="https://flaskpackages.pythonanywhere.com/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Limelight – Flask Extensions, Frameworks & Packages" />
+  <meta name="twitter:description" content="Community-driven Flask package directory." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Limelight",
+    "url": "https://flaskpackages.pythonanywhere.com/",
+    "description": "Discover and explore open source Flask extensions, frameworks, modules, and projects.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://flaskpackages.pythonanywhere.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    /* Minimal, text-first design */
+    :root { --accent: #166534; --accent-light: #f0fdf4; }
+    body { font-family: Georgia, 'Times New Roman', serif; background: #fff; color: #111; line-height: 1.7; }
+    h1, h2, h3, h4, .navbar-brand, .sans { font-family: 'Segoe UI', system-ui, sans-serif; }
+
+    /* Navbar – ultra simple */
+    .site-nav { border-bottom: 2px solid #111; padding: .6rem 0; }
+    .site-nav .navbar-brand { font-weight: 900; font-size: 1.3rem; color: #111; letter-spacing: -.02em; }
+    .site-nav .nav-link { color: #333; font-size: .875rem; padding: 0 .75rem; }
+    .site-nav .nav-link:hover { color: var(--accent); }
+    .site-nav .submit-btn { background: #111; color: #fff; font-size: .8rem; padding: .25rem .75rem; border-radius: 3px; text-decoration: none; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .site-nav .submit-btn:hover { background: var(--accent); color: #fff; }
+
+    /* Hero text block */
+    .hero-text { padding: 3rem 0 2rem; border-bottom: 1px solid #e5e7eb; }
+    .hero-text h1 { font-size: 2.2rem; font-weight: 900; line-height: 1.15; margin-bottom: .75rem; }
+    .hero-text p { font-size: 1.1rem; color: #4b5563; max-width: 680px; }
+    .search-minimal .form-control { border: 2px solid #111; border-radius: 0; font-size: .95rem; padding: .5rem .75rem; box-shadow: none; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .search-minimal .form-control:focus { border-color: var(--accent); box-shadow: none; }
+    .search-minimal .btn { border: 2px solid #111; border-left: none; border-radius: 0; background: #111; color: #fff; font-family: 'Segoe UI', system-ui, sans-serif; font-size: .9rem; padding: .5rem 1.25rem; }
+    .search-minimal .btn:hover { background: var(--accent); border-color: var(--accent); }
+    .search-tags a { color: #6b7280; font-size: .82rem; text-decoration: none; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .search-tags a:hover { color: var(--accent); text-decoration: underline; }
+
+    /* Content sections */
+    .content-section { padding: 2.5rem 0; border-bottom: 1px solid #e5e7eb; }
+    .section-heading { font-size: .7rem; text-transform: uppercase; letter-spacing: .15em; color: #9ca3af; font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 700; margin-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb; padding-bottom: .5rem; }
+
+    /* Package list items */
+    .pkg-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f3f4f6; }
+    .pkg-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .pkg-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: .15rem; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .pkg-item h3 a { color: #111; text-decoration: none; }
+    .pkg-item h3 a:hover { color: var(--accent); text-decoration: underline; }
+    .pkg-item p { font-size: .9rem; color: #4b5563; margin-bottom: .25rem; line-height: 1.5; }
+    .pkg-meta-line { font-size: .78rem; color: #9ca3af; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .pkg-meta-line a { color: var(--accent); text-decoration: none; }
+    .pkg-meta-line a:hover { text-decoration: underline; }
+
+    /* Category alpha list */
+    .cat-alpha-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; }
+    @media (min-width: 768px) { .cat-alpha-list { columns: 3; } }
+    .cat-alpha-list li { padding: .2rem 0; break-inside: avoid; font-size: .9rem; }
+    .cat-alpha-list li a { color: #111; text-decoration: none; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .cat-alpha-list li a:hover { color: var(--accent); text-decoration: underline; }
+    .cat-alpha-list li .cnt { color: #9ca3af; font-size: .8rem; }
+
+    /* Sidebar */
+    .sidebar-list { list-style: none; padding: 0; }
+    .sidebar-list li { padding: .3rem 0; border-bottom: 1px solid #f3f4f6; font-size: .88rem; }
+    .sidebar-list li a { color: #111; text-decoration: none; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .sidebar-list li a:hover { color: var(--accent); }
+    .sidebar-label { font-size: .65rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 700; color: #9ca3af; font-family: 'Segoe UI', system-ui, sans-serif; margin-bottom: .5rem; display: block; }
+
+    /* Footer */
+    footer { border-top: 2px solid #111; padding: 2rem 0; }
+    footer p { font-size: .85rem; color: #6b7280; font-family: 'Segoe UI', system-ui, sans-serif; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="site-nav navbar navbar-expand-md" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand" href="/"><i class="bi bi-spotlight me-1"></i>Limelight</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="/packages/">Packages</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories/">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="/grids/">Grids</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <a href="/login/" class="nav-link" style="font-size:.875rem;">Log in</a>
+        <a href="/add/" class="submit-btn">Submit a Package</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero-text">
+  <div class="container">
+    <h1>Find the right Flask package,<br />faster.</h1>
+    <p class="mb-4">
+      Limelight is a community-driven directory of open source Flask extensions, frameworks, modules, and projects.
+      Browse 1,240+ packages across 48 categories.
+    </p>
+
+    <form action="/search/" method="get" class="d-flex input-group search-minimal mb-2" style="max-width:520px;" role="search" aria-label="Search Flask packages">
+      <input type="search" name="q" class="form-control" placeholder="Search Flask packages…" aria-label="Search packages" />
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <div class="search-tags sans">
+      Popular searches:
+      <a href="/search/?q=auth">authentication</a> ·
+      <a href="/search/?q=admin">admin panel</a> ·
+      <a href="/search/?q=orm">ORM</a> ·
+      <a href="/search/?q=rest">REST API</a> ·
+      <a href="/search/?q=cache">caching</a> ·
+      <a href="/search/?q=migrate">migrations</a>
+    </div>
+  </div>
+</header>
+
+<!-- Main content -->
+<main>
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- Primary column -->
+      <div class="col-md-8">
+
+        <!-- Most downloaded -->
+        <section class="content-section" aria-labelledby="popular-h">
+          <span class="section-heading">Most Popular Packages</span>
+          <h2 class="visually-hidden" id="popular-h">Most popular Flask packages</h2>
+
+          <div class="pkg-item">
+            <h3><a href="/package/flask-sqlalchemy/">Flask-SQLAlchemy</a></h3>
+            <p>Adds SQLAlchemy ORM support to your Flask application. The most widely used database integration for Flask, supporting all major relational databases including SQLite, PostgreSQL, MySQL, and MariaDB.</p>
+            <div class="pkg-meta-line">
+              <a href="/category/database/">Database &amp; ORM</a> ·
+              ⭐ 4,100 stars · 3.8M downloads/mo ·
+              <a href="https://pypi.org/project/Flask-SQLAlchemy/" rel="noopener">PyPI</a> ·
+              <a href="https://github.com/pallets-eco/flask-sqlalchemy" rel="noopener">GitHub</a>
+            </div>
+          </div>
+
+          <div class="pkg-item">
+            <h3><a href="/package/flask-restful/">Flask-RESTful</a></h3>
+            <p>An extension for Flask that adds support for quickly building REST APIs. It encourages best practices with minimal setup, using class-based views with automatic request parsing and HTTP exception handling.</p>
+            <div class="pkg-meta-line">
+              <a href="/category/rest-api/">REST / APIs</a> ·
+              ⭐ 6,700 stars · 1.4M downloads/mo ·
+              <a href="https://pypi.org/project/Flask-RESTful/" rel="noopener">PyPI</a> ·
+              <a href="https://github.com/flask-restful/flask-restful" rel="noopener">GitHub</a>
+            </div>
+          </div>
+
+          <div class="pkg-item">
+            <h3><a href="/package/flask-login/">Flask-Login</a></h3>
+            <p>Provides user session management for Flask. Handles the common tasks of logging in, logging out, and remembering users' sessions over extended periods of time without any specific database requirements.</p>
+            <div class="pkg-meta-line">
+              <a href="/category/authentication/">Authentication</a> ·
+              ⭐ 3,524 stars · 2.1M downloads/mo ·
+              <a href="https://pypi.org/project/Flask-Login/" rel="noopener">PyPI</a> ·
+              <a href="https://github.com/maxcountryman/flask-login" rel="noopener">GitHub</a>
+            </div>
+          </div>
+
+          <div class="pkg-item">
+            <h3><a href="/package/flask-wtf/">Flask-WTF</a></h3>
+            <p>Simple integration of Flask and WTForms, including CSRF protection. Makes it straightforward to work with HTML forms, including file uploads, with automatic CSRF token generation and validation.</p>
+            <div class="pkg-meta-line">
+              <a href="/category/forms/">Forms</a> ·
+              ⭐ 1,402 stars · 2.6M downloads/mo ·
+              <a href="https://pypi.org/project/Flask-WTF/" rel="noopener">PyPI</a> ·
+              <a href="https://github.com/wtforms/flask-wtf" rel="noopener">GitHub</a>
+            </div>
+          </div>
+
+          <div class="pkg-item">
+            <h3><a href="/package/flask-cors/">Flask-CORS</a></h3>
+            <p>A Flask extension for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX requests possible. Supports all CORS features including preflight requests, credentials, and multiple origins.</p>
+            <div class="pkg-meta-line">
+              <a href="/category/security/">Security</a> ·
+              ⭐ 871 stars · 4.2M downloads/mo ·
+              <a href="https://pypi.org/project/Flask-Cors/" rel="noopener">PyPI</a> ·
+              <a href="https://github.com/corydolphin/flask-cors" rel="noopener">GitHub</a>
+            </div>
+          </div>
+
+          <a href="/packages/?sort=popular" class="sans text-decoration-none fw-semibold" style="color:var(--accent);font-size:.875rem;">
+            View all popular packages →
+          </a>
+        </section>
+
+        <!-- New this week -->
+        <section class="content-section" aria-labelledby="new-h">
+          <span class="section-heading">New This Week</span>
+          <h2 class="visually-hidden" id="new-h">New packages this week</h2>
+
+          <div class="pkg-item">
+            <h3><a href="/package/flask-ninja/">Flask-Ninja</a></h3>
+            <p>A powerful API framework for Flask inspired by Django Ninja. Uses Python type hints for request and response validation, automatic OpenAPI docs generation, and class-based routing.</p>
+            <div class="pkg-meta-line">
+              <a href="/category/rest-api/">REST / APIs</a> · Added 3 days ago
+            </div>
+          </div>
+
+          <div class="pkg-item">
+            <h3><a href="/package/flask-htmx/">Flask-HTMX</a></h3>
+            <p>Integrate HTMX with your Flask applications for dynamic server-side rendering without JavaScript frameworks. Includes HTMX request detection helpers and response utilities.</p>
+            <div class="pkg-meta-line">
+              <a href="/category/frontend/">Frontend</a> · Added 2 weeks ago
+            </div>
+          </div>
+
+          <a href="/packages/?sort=newest" class="sans text-decoration-none fw-semibold" style="color:var(--accent);font-size:.875rem;">
+            All recently added packages →
+          </a>
+        </section>
+
+        <!-- All categories -->
+        <section class="content-section" aria-labelledby="cat-h">
+          <span class="section-heading">All Categories</span>
+          <h2 class="visually-hidden" id="cat-h">Browse all Flask package categories</h2>
+          <ul class="cat-alpha-list">
+            <li><a href="/category/admin/">Admin Panels</a> <span class="cnt">(37)</span></li>
+            <li><a href="/category/asynchronous/">Asynchronous</a> <span class="cnt">(22)</span></li>
+            <li><a href="/category/authentication/">Authentication</a> <span class="cnt">(84)</span></li>
+            <li><a href="/category/caching/">Caching</a> <span class="cnt">(18)</span></li>
+            <li><a href="/category/cli/">CLI Tools</a> <span class="cnt">(12)</span></li>
+            <li><a href="/category/configuration/">Configuration</a> <span class="cnt">(9)</span></li>
+            <li><a href="/category/database/">Database &amp; ORM</a> <span class="cnt">(62)</span></li>
+            <li><a href="/category/deployment/">Deployment</a> <span class="cnt">(23)</span></li>
+            <li><a href="/category/documentation/">Documentation</a> <span class="cnt">(8)</span></li>
+            <li><a href="/category/email/">Email</a> <span class="cnt">(16)</span></li>
+            <li><a href="/category/file-handling/">File Handling</a> <span class="cnt">(14)</span></li>
+            <li><a href="/category/forms/">Forms</a> <span class="cnt">(29)</span></li>
+            <li><a href="/category/frontend/">Frontend / UI</a> <span class="cnt">(31)</span></li>
+            <li><a href="/category/graphql/">GraphQL</a> <span class="cnt">(7)</span></li>
+            <li><a href="/category/i18n/">Internationalization</a> <span class="cnt">(11)</span></li>
+            <li><a href="/category/logging/">Logging</a> <span class="cnt">(14)</span></li>
+            <li><a href="/category/monitoring/">Monitoring</a> <span class="cnt">(17)</span></li>
+            <li><a href="/category/payments/">Payments</a> <span class="cnt">(6)</span></li>
+            <li><a href="/category/rest-api/">REST / APIs</a> <span class="cnt">(91)</span></li>
+            <li><a href="/category/security/">Security</a> <span class="cnt">(33)</span></li>
+            <li><a href="/category/sockets/">Sockets &amp; Realtime</a> <span class="cnt">(13)</span></li>
+            <li><a href="/category/storage/">Storage</a> <span class="cnt">(19)</span></li>
+            <li><a href="/category/tasks/">Task Queues</a> <span class="cnt">(15)</span></li>
+            <li><a href="/category/testing/">Testing</a> <span class="cnt">(41)</span></li>
+          </ul>
+        </section>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="col-md-4" aria-label="Sidebar">
+        <div class="content-section">
+
+          <div class="mb-4">
+            <span class="sidebar-label">Directory Stats</span>
+            <p class="sans mb-0" style="font-size:.88rem;">
+              <strong>1,240+</strong> packages ·
+              <strong>48</strong> categories ·
+              <strong>320+</strong> contributors
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <span class="sidebar-label">Recently Updated</span>
+            <ul class="sidebar-list">
+              <li><a href="/package/flask-sqlalchemy/">Flask-SQLAlchemy</a> <span style="font-size:.75rem;color:#9ca3af;">2 days ago</span></li>
+              <li><a href="/package/flask-login/">Flask-Login</a> <span style="font-size:.75rem;color:#9ca3af;">2 weeks ago</span></li>
+              <li><a href="/package/flask-babel/">Flask-Babel</a> <span style="font-size:.75rem;color:#9ca3af;">3 weeks ago</span></li>
+              <li><a href="/package/flask-caching/">Flask-Caching</a> <span style="font-size:.75rem;color:#9ca3af;">1 month ago</span></li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <span class="sidebar-label">Trending Categories</span>
+            <ul class="sidebar-list">
+              <li><a href="/category/rest-api/">REST / APIs <span style="color:#9ca3af;">(91)</span></a></li>
+              <li><a href="/category/authentication/">Authentication <span style="color:#9ca3af;">(84)</span></a></li>
+              <li><a href="/category/database/">Database &amp; ORM <span style="color:#9ca3af;">(62)</span></a></li>
+              <li><a href="/category/testing/">Testing <span style="color:#9ca3af;">(41)</span></a></li>
+              <li><a href="/category/frontend/">Frontend / UI <span style="color:#9ca3af;">(31)</span></a></li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <span class="sidebar-label">Contribute</span>
+            <p class="sans mb-2" style="font-size:.85rem;color:#4b5563;">
+              Limelight is community-maintained. If you know a Flask package that belongs here, please submit it.
+            </p>
+            <a href="/add/" class="btn btn-sm w-100" style="background:#111;color:#fff;border-radius:2px;font-family:'Segoe UI',system-ui,sans-serif;">Submit a Package</a>
+          </div>
+
+          <div>
+            <span class="sidebar-label">See Also</span>
+            <ul class="sidebar-list">
+              <li><a href="https://djangopackages.org" rel="noopener">Django Packages</a></li>
+              <li><a href="https://pypi.org" rel="noopener">PyPI</a></li>
+              <li><a href="https://palletsprojects.com/p/flask/" rel="noopener">Flask Official Docs</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p>
+          <strong>Limelight</strong> – Community-driven Flask package directory.<br />
+          Inspired by <a href="https://djangopackages.org" rel="noopener">Django Packages</a>. Built with ❤️ by the Flask community.
+        </p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p>
+          <a href="/packages/">Packages</a> ·
+          <a href="/categories/">Categories</a> ·
+          <a href="/add/">Submit</a> ·
+          <a href="/api/">API</a> ·
+          <a href="/about/">About</a> ·
+          <a href="/privacy/">Privacy</a>
+        </p>
+        <p class="mb-0">© 2024 Limelight</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
