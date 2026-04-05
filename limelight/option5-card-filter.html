@@ -163,6 +163,17 @@
         <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
       </ul>
       <div class="d-flex gap-2 align-items-center">
+        <!-- Language selector -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="lang-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select language">
+            <i class="bi bi-translate me-1"></i> EN
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="lang-dropdown">
+            <li><a class="dropdown-item active" href="?lang=en"><span class="me-2">🇺🇸</span> English</a></li>
+            <li><a class="dropdown-item" href="?lang=es"><span class="me-2">🇪🇸</span> Español</a></li>
+            <li><a class="dropdown-item" href="?lang=fr"><span class="me-2">🇫🇷</span> Français</a></li>
+          </ul>
+        </div>
         <button id="theme-toggle" class="btn btn-sm btn-outline-light" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
           <i class="bi bi-moon-stars" id="theme-icon"></i>
         </button>
