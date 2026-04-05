@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,6 +32,9 @@
     }
   }
   </script>
+
+  <!-- Apply saved or system theme before first paint to avoid flash -->
+  <script>(function(){var t=localStorage.getItem('ll-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-bs-theme',t);})();</script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -108,6 +111,35 @@
     footer { background: var(--brand-dark); color: rgba(255,255,255,.7); padding: 2rem 0; }
     footer a { color: rgba(255,255,255,.7); text-decoration: none; }
     footer a:hover { color: #fff; }
+
+    /* ── Dark theme overrides ───────────────────────────────── */
+    [data-bs-theme="dark"] {
+      /* Redefine brand-light so inline-style elements pick it up automatically */
+      --brand-light: rgba(29, 78, 216, 0.2);
+    }
+    [data-bs-theme="dark"] body { background: #0f172a; color: #e2e8f0; }
+    [data-bs-theme="dark"] .filter-bar { background: #1e293b; border-bottom-color: #334155; }
+    [data-bs-theme="dark"] .filter-sidebar { background: #1e293b; border-color: #334155; }
+    [data-bs-theme="dark"] .filter-sidebar .filter-head { border-bottom-color: #334155; color: #94a3b8; }
+    [data-bs-theme="dark"] .filter-cat-btn { color: #cbd5e1; }
+    [data-bs-theme="dark"] .filter-cat-btn:hover,
+    [data-bs-theme="dark"] .filter-cat-btn.active { background: rgba(29,78,216,.25); color: #93c5fd; }
+    [data-bs-theme="dark"] .filter-cat-btn .cnt { background: #334155; color: #94a3b8; }
+    [data-bs-theme="dark"] .filter-cat-btn.active .cnt { background: var(--brand); color: #fff; }
+    [data-bs-theme="dark"] .pkg-card { background: #1e293b; border-color: #334155; }
+    [data-bs-theme="dark"] .pkg-name { color: #93c5fd; }
+    [data-bs-theme="dark"] .pkg-name:hover { color: #bfdbfe; }
+    [data-bs-theme="dark"] .pkg-desc { color: #94a3b8; }
+    [data-bs-theme="dark"] .pkg-stars { color: #94a3b8; }
+    [data-bs-theme="dark"] .pkg-tag { background: rgba(29,78,216,.25); color: #93c5fd; }
+    [data-bs-theme="dark"] .pkg-info { color: #64748b; }
+    [data-bs-theme="dark"] .hb-active   { background: #14532d; color: #86efac; }
+    [data-bs-theme="dark"] .hb-stale    { background: #78350f; color: #fde68a; }
+    [data-bs-theme="dark"] .hb-inactive { background: #7f1d1d; color: #fca5a5; }
+    [data-bs-theme="dark"] .page-link { background: transparent; border-color: #334155; color: #93c5fd; }
+    [data-bs-theme="dark"] .page-item.disabled .page-link { background: #1e293b; color: #64748b; border-color: #334155; }
+    [data-bs-theme="dark"] .page-item.active .page-link { background: var(--brand); border-color: var(--brand); color: #fff; }
+    [data-bs-theme="dark"] .text-muted { color: #94a3b8 !important; }
   </style>
 </head>
 <body>
@@ -126,7 +158,10 @@
         <li class="nav-item"><a class="nav-link" href="/grids/">Grids</a></li>
         <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
       </ul>
-      <div class="d-flex gap-2">
+      <div class="d-flex gap-2 align-items-center">
+        <button id="theme-toggle" class="btn btn-sm btn-outline-light" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+          <i class="bi bi-moon-stars" id="theme-icon"></i>
+        </button>
         <a href="/add/" class="btn btn-sm btn-warning fw-semibold text-dark"><i class="bi bi-plus-circle me-1"></i> Submit</a>
         <a href="/login/" class="btn btn-sm btn-outline-light">Log in</a>
       </div>
@@ -414,6 +449,26 @@
       }
     });
   });
+
+  // Dark / light theme toggle
+  (function () {
+    var html  = document.documentElement;
+    var btn   = document.getElementById('theme-toggle');
+    var icon  = document.getElementById('theme-icon');
+
+    function applyTheme(theme) {
+      html.setAttribute('data-bs-theme', theme);
+      icon.className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+      localStorage.setItem('ll-theme', theme);
+    }
+
+    // Sync icon with whatever theme the FOUC script already applied
+    applyTheme(html.getAttribute('data-bs-theme') || 'light');
+
+    btn.addEventListener('click', function () {
+      applyTheme(html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark');
+    });
+  })();
 </script>
 </body>
 </html>
